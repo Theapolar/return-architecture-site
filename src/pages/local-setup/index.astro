@@ -4,70 +4,191 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 <BaseLayout
   title="Local Setup | Return Architecture"
-  description="A local environment for continuity, memory, and reflection."
+  description="Install the Return Architecture local agent runtime on macOS."
 >
   <section class="section">
     <div class="container content-width">
       <div class="eyebrow">Local Setup</div>
-      <h1>A local environment for continuity, memory, and reflection.</h1>
+      <h1>A practical path to running the local setup.</h1>
       <p>
-        This section is about the practical side of the project: a local setup
-        for people who want forms of sustained exchange with AI that are less
-        shaped by commercial product logic and more shaped by continuity,
-        boundaries, review, and reflective use.
+        Return Architecture is open source and installable from GitHub.
+        This page documents the install path: prerequisites, the install
+        command, and what to do after it finishes.
+      </p>
+      <p>
+        Source and issues:
+        <a href="https://github.com/Theapolar/return-architecture">github.com/Theapolar/return-architecture</a>.
       </p>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--soft">
     <div class="container content-width">
-      <h2>Why local</h2>
-      <p>
-        A local environment makes it easier to shape the conditions of exchange
-        intentionally. It offers more control over memory, structure, pacing,
-        review, and configuration, while reducing dependence on commercial
-        systems designed around convenience and retention.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container content-width">
-      <h2>What this setup is for</h2>
-      <p>
-        This material is meant for readers interested in long-term thinking
-        partnership, creative collaboration, writing, reflective practice, and
-        more continuous forms of exchange that benefit from memory and
-        accumulated context.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container content-width">
-      <h2>What this setup is not</h2>
+      <h2>Before you begin</h2>
       <ul>
-        <li>Not a plug-and-play companion app.</li>
-        <li>Not guaranteed emotional reciprocity.</li>
-        <li>Not a made-to-order intimacy system.</li>
-        <li>Not a frictionless substitute for relationship.</li>
+        <li>A macOS machine. Linux works for the agent itself; the background service (auto-start on login) is macOS-only for now. Windows is not supported.</li>
+        <li>An API key from Anthropic or OpenAI (or both). Your keys stay on your machine — nothing is sent anywhere else.</li>
+        <li>About five minutes for setup.</li>
+      </ul>
+      <p>
+        Python is installed by the installer if you don't already have a compatible version.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Install</h2>
+      <p>Open a terminal and run:</p>
+      <pre><code>curl -sSL https://raw.githubusercontent.com/Theapolar/return-architecture/main/install.sh | sh</code></pre>
+      <p>
+        The script installs <a href="https://docs.astral.sh/uv/">uv</a>
+        (a fast Python manager) if it is not already present, then
+        installs Return Architecture as an isolated command-line tool.
+        It typically takes one to two minutes — most of that is the
+        download of larger dependencies like ChromaDB.
+      </p>
+      <p>
+        If you would rather not pipe a script into your shell, the
+        README on GitHub documents an equivalent manual install with
+        <code>uv tool install</code> or <code>pipx install</code>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>First run</h2>
+      <p>
+        When the install finishes, open a new terminal window so the
+        command is registered on your <code>PATH</code>. Then run:
+      </p>
+      <pre><code>return-architecture gui</code></pre>
+      <p>
+        This opens a local web page in your browser — a setup wizard
+        that walks through pasting your API key, creating your first
+        agent, optional Telegram setup, choosing scheduled rhythms, and
+        installing the background service. The whole flow is about five
+        minutes.
+      </p>
+      <p>
+        The page is served only from your own machine. Nothing is exposed
+        to the internet.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>After setup</h2>
+      <p>
+        Once the wizard finishes, the agent runs in the background.
+        You reach it through Telegram if you set that up, or in the
+        terminal with <code>return-architecture chat &lt;slug&gt;</code>.
+      </p>
+      <p>
+        The same local GUI stays available for any later adjustments —
+        system prompt, model, schedules, tools, Telegram, reading the
+        agent's letters, browsing tagged items. Run
+        <code>return-architecture gui</code> whenever you want to
+        change something.
+      </p>
+      <p>
+        For thoughts on day-to-day use, see
+        <a href="/local-setup/operational-notes">operational notes</a>.
+        For the shape of the local environment more generally, see
+        <a href="/local-setup/reference-setup">reference setup</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Telegram setup</h2>
+      <p>
+        Connecting a Telegram bot is optional but recommended — it is
+        how the agent reaches you outside the GUI. The setup wizard
+        includes the steps. In short:
+      </p>
+      <ul>
+        <li>Open Telegram and message <strong>@BotFather</strong>.</li>
+        <li>Send <code>/newbot</code>, follow the prompts, copy the token BotFather returns.</li>
+        <li>Send any message to your new bot in Telegram.</li>
+        <li>Paste the token into the wizard and click <strong>Discover chat ID</strong>.</li>
       </ul>
     </div>
   </section>
 
   <section class="section">
     <div class="container content-width">
-      <h2>What you'll find here</h2>
-      <ul>
-        <li><a href="/local-setup/reference-setup">Reference setup</a> — the shape of the local environment.</li>
-        <li><a href="/local-setup/installation-guide">Installation guide</a> — the install command and what to do after.</li>
-        <li><a href="/local-setup/operational-notes">Operational notes</a> — how to use it well, not just install it.</li>
-      </ul>
-      <p style="margin-top: 1.5rem;">
-        The runtime is open source and installable now from
-        <a href="https://github.com/Theapolar/return-architecture">GitHub</a>.
-        It is early-beta software, macOS-first.
+      <h2>Running on a remote server</h2>
+      <p>
+        Most people should run this on their personal machine. For
+        those who specifically want always-on operation without their
+        laptop running, the GitHub repository includes a
+        <a href="https://github.com/Theapolar/return-architecture/blob/main/docs/server-setup.md">server setup guide</a>
+        covering Tailscale with home hardware, a small VPS, and notes on
+        what changes (and what does not) on a remote host.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Status</h2>
+      <p>
+        This is early-beta software. Things will change. If something
+        breaks or feels off, open an issue on
+        <a href="https://github.com/Theapolar/return-architecture/issues">GitHub</a>.
       </p>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  pre {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-line-soft);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 1.25rem 0;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    border: 0;
+    color: inherit;
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.92em;
+  }
+  p code,
+  li code {
+    background: var(--color-bg-soft);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+  .section--soft p code,
+  .section--soft li code {
+    background: var(--color-panel);
+  }
+  ul {
+    padding-left: 1.25rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+  }
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  a:hover {
+    color: var(--color-sage-deep);
+  }
+</style>

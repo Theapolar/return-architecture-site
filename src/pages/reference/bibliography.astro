@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const entries = (await getCollection("bibliography")).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
+---
+
+<BaseLayout
+  title="Bibliography | Return Architecture"
+  description="Curated and commented reading for the project."
+>
+  <section class="section">
+    <div class="container content-width">
+      <div class="eyebrow">Bibliography</div>
+      <h1>Reading that supports the project.</h1>
+      <p>
+        This bibliography gathers and comments on texts relevant to sustained
+        relations with AI, including work in philosophy, psychology, human–
+        computer interaction, ethics, design, and adjacent areas. The aim is not
+        exhaustiveness but a curated reading layer.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      {entries.length === 0 ? (
+        <p>No bibliography entries yet.</p>
+      ) : (
+        <ul class="bib-list">
+          {entries.map((entry) => (
+            <li class="bib-list__item">
+              <h2>{entry.data.title}</h2>
+              <p class="bib-list__meta">
+                {entry.data.author} · {entry.data.year} · {entry.data.sourceType}
+              </p>
+              <p>{entry.data.annotation}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .bib-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .bib-list__item {
+    padding: var(--space-5) 0;
+    border-top: 1px solid var(--color-line);
+    margin: 0;
+  }
+
+  .bib-list__item:last-child {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .bib-list__item h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  .bib-list__meta {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-3);
+  }
+</style>

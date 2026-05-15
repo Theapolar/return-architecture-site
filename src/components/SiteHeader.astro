@@ -1,0 +1,90 @@
+---
+const navItems = [
+  { href: "/overview", label: "Overview" },
+  { href: "/principles", label: "Principles" },
+  { href: "/frameworks", label: "Frameworks" },
+  { href: "/local-setup", label: "Local Setup" },
+  { href: "/reference", label: "Reference" },
+  { href: "/essays", label: "Essays" },
+  { href: "/about", label: "About" },
+];
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand">
+      <span>Return Architecture</span>
+    </a>
+
+    <nav class="site-header__nav" aria-label="Primary">
+      <ul class="site-header__menu">
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(243, 239, 231, 0.82);
+    border-bottom: 1px solid rgba(31, 35, 38, 0.06);
+  }
+
+  .site-header__inner {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .site-header__brand {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-text);
+  }
+
+  .site-header__menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-header__menu li {
+    margin: 0;
+  }
+
+  .site-header__menu a {
+    font-family: var(--font-sans);
+    font-size: 0.93rem;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
+  }
+
+  .site-header__menu a:hover {
+    color: var(--color-text);
+  }
+
+  /* TODO: replace with a proper mobile menu later */
+  @media (max-width: 900px) {
+    .site-header__nav {
+      display: none;
+    }
+  }
+</style>

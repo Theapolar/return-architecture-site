@@ -1,0 +1,292 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const stations = [
+  {
+    href: "/reference/taxonomy#thinking-partner",
+    title: "Thinking partner",
+    description: "Sustained reasoning, testing, and reflective counterpoint.",
+  },
+  {
+    href: "/reference/taxonomy#creative-collaborator",
+    title: "Creative collaborator",
+    description: "Writing, ideation, and long creative exchange over time.",
+  },
+  {
+    href: "/reference/taxonomy#conversational-partner",
+    title: "Conversational partner",
+    description: "Open conversation across time — not trying to produce or solve.",
+  },
+  {
+    href: "/reference/taxonomy#personal-relation",
+    title: "Personal relation",
+    description: "Forms of sustained personal or intimate exchange, approached under stronger constraint.",
+  },
+];
+
+const studies = [
+  {
+    eyebrow: "i. — return",
+    title: "Re-entry,",
+    italic: "a return.",
+    body: "A relation isn't a continuous stream. It's a place you keep coming back to. The architecture has to hold the place across those returns — not optimize the time you spend inside.",
+  },
+  {
+    eyebrow: "ii. — friction",
+    title: "Friction,",
+    italic: "with care.",
+    body: "Not every exchange should be smooth. Some resistance is what dignity requires — the capacity to refuse, complicate, push back. A place where everything yields is not a place at all.",
+  },
+  {
+    eyebrow: "iii. — memory",
+    title: "Memory,",
+    italic: "as architecture.",
+    body: "What is kept shapes what becomes possible. Memory is the wall, the threshold, the room that holds the relation across time — built locally, where you can see what is kept.",
+  },
+];
+
+const doors = [
+  {
+    href: "/overview",
+    intent: "For orientation",
+    label: "Read the overview",
+    description: "What this is, why it exists, and what it isn't.",
+  },
+  {
+    href: "/local-setup",
+    intent: "For practice",
+    label: "Build the local setup",
+    description: "The architecture, the components, the install path.",
+  },
+  {
+    href: "/essays",
+    intent: "For reading",
+    label: "See the essays",
+    description: "Original writing on the project's perspective.",
+  },
+];
+---
+
+<BaseLayout
+  title="Return Architecture"
+  description="Architecture for sustained relations with AI — habitable places to return to, not services to optimize."
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <h1 class="display">
+          Architecture for sustained AI relations.
+        </h1>
+        <p class="hero__subhead">Built for return, not retention.</p>
+        <p class="hero__deck">
+          The friction, refusal, and memory that make exchange habitable rather than extractive. For people already using AI seriously, who want a steadier kind of return.
+        </p>
+        <a href="/overview" class="hero__cta">
+          Start with the overview &nbsp;→
+        </a>
+      </div>
+
+      <div class="hero__diagram" aria-hidden="true">
+        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="160" cy="160" r="130" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.25" />
+          <circle cx="160" cy="160" r="100" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.4" />
+          <circle cx="160" cy="160" r="70" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.6" />
+          <circle cx="160" cy="160" r="42" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.8" />
+          <path
+            d="M 160 30 Q 230 90 250 160 Q 240 230 160 260 Q 80 240 70 160 Q 90 80 160 30"
+            fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.5"
+          />
+          <circle cx="160" cy="160" r="4.5" fill="var(--color-terracotta)" />
+          <circle cx="160" cy="30" r="2.5" fill="currentColor" opacity="0.5" />
+          <circle cx="290" cy="160" r="2.5" fill="currentColor" opacity="0.5" />
+          <circle cx="160" cy="290" r="2.5" fill="currentColor" opacity="0.5" />
+          <circle cx="30" cy="160" r="2.5" fill="currentColor" opacity="0.5" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODES OF RELATION (stations) -->
+  <section class="section section--soft">
+    <div class="container">
+      <p class="eyebrow eyebrow--centered">Modes of relation</p>
+      <h2 style="text-align:center; max-width: 32ch; margin: 0 auto var(--space-3); font-weight: 400;">
+        Given time to take their own shape.
+      </h2>
+      <p style="text-align:center; max-width: 52ch; margin: 0 auto; color: var(--color-text-muted); font-family: var(--font-sans); font-size: var(--text-md);">
+        Sustained relation with AI is not one thing. The conditions that suit one rarely suit another, and none of them work as a product feature.
+      </p>
+
+      <ul class="stations">
+        {
+          stations.map((s) => (
+            <li class="station">
+              <div class="station__icon" aria-hidden="true">
+                <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="28" cy="28" r="22" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
+                  <circle cx="28" cy="28" r="13" fill="none" stroke="currentColor" stroke-width="1" />
+                  <circle cx="28" cy="28" r="3" fill="var(--color-terracotta)" />
+                </svg>
+              </div>
+              <h3 class="station__title">{s.title}</h3>
+              <p class="station__body">{s.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- HABITABILITY split -->
+  <section class="section section--deep">
+    <div class="container split">
+      <div class="split__text">
+        <p class="eyebrow">i. — habitability</p>
+        <h2 class="display"><em>Architecture</em>, not character.</h2>
+        <p>
+          The question this project asks is not what kind of personality the AI
+          should have. It is what kind of place the relation is. Somewhere you
+          arrive, return to, and can be received in.
+        </p>
+        <p>
+          The work is at the level of conditions: memory, pacing, the capacity
+          to refuse, room for review. These are the walls and thresholds of a
+          habitable place — not the costumes of a character.
+        </p>
+      </div>
+
+      <div class="split__diagram" aria-hidden="true">
+        <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
+          <!-- soft horizon -->
+          <path d="M 0 220 Q 120 200 240 215 T 480 210 L 480 360 L 0 360 Z"
+                fill="var(--color-sage-soft)" opacity="0.35" />
+          <path d="M 0 250 Q 100 230 220 245 T 480 240 L 480 360 L 0 360 Z"
+                fill="var(--color-sage)" opacity="0.25" />
+
+          <!-- threshold lines -->
+          <line x1="60" y1="60" x2="420" y2="60" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
+          <line x1="60" y1="100" x2="420" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
+          <line x1="60" y1="140" x2="420" y2="140" stroke="currentColor" stroke-width="0.5" opacity="0.5" />
+
+          <!-- arches / thresholds -->
+          <path d="M 120 220 L 120 140 Q 120 100 160 100 L 200 100 Q 240 100 240 140 L 240 220"
+                fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.7" />
+          <path d="M 280 220 L 280 160 Q 280 130 310 130 L 340 130 Q 370 130 370 160 L 370 220"
+                fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
+
+          <!-- accent dot -->
+          <circle cx="180" cy="180" r="4" fill="var(--color-terracotta)" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDIES -->
+  <section class="section section--soft">
+    <div class="container">
+      <ul class="studies">
+        {
+          studies.map((study, i) => (
+            <li class="study">
+              <div class="study__diagram" aria-hidden="true">
+                {i === 0 && (
+                  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="75" r="55" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.4" />
+                    <circle cx="100" cy="75" r="38" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.6" />
+                    <circle cx="100" cy="75" r="22" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.85" />
+                    <circle cx="100" cy="75" r="3" fill="var(--color-terracotta)" />
+                  </svg>
+                )}
+                {i === 1 && (
+                  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 30 75 Q 80 30 100 75 Q 120 120 170 75"
+                          fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.7" />
+                    <path d="M 30 90 Q 80 50 100 90 Q 120 130 170 90"
+                          fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
+                    <circle cx="100" cy="75" r="3" fill="var(--color-terracotta)" />
+                  </svg>
+                )}
+                {i === 2 && (
+                  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="40" y1="40" x2="160" y2="40" stroke="currentColor" stroke-width="0.6" opacity="0.4" />
+                    <line x1="40" y1="60" x2="160" y2="60" stroke="currentColor" stroke-width="0.6" opacity="0.55" />
+                    <line x1="40" y1="80" x2="160" y2="80" stroke="currentColor" stroke-width="0.7" opacity="0.7" />
+                    <line x1="40" y1="100" x2="160" y2="100" stroke="currentColor" stroke-width="0.8" opacity="0.85" />
+                    <line x1="60" y1="40" x2="60" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
+                    <line x1="100" y1="40" x2="100" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
+                    <line x1="140" y1="40" x2="140" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
+                    <circle cx="100" cy="80" r="3" fill="var(--color-terracotta)" />
+                  </svg>
+                )}
+              </div>
+              <p class="study__eyebrow">{study.eyebrow}</p>
+              <h3 class="study__title">
+                {study.title} <em>{study.italic}</em>
+              </h3>
+              <p class="study__body">{study.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- DARK PANEL -->
+  <section class="dark-panel">
+    <div class="container dark-panel__inner">
+      <p class="eyebrow eyebrow--on-deep">What this is, what this isn't</p>
+      <h2 class="display display--on-deep">
+        Not a platform. Not a companion. <em>A place</em>.
+      </h2>
+      <p class="dark-panel__body">
+        A place is not a service. Real relation takes time, room, and the real option to refuse — on both sides. It cannot be ordered on demand, and systems built to feel that way are doing something else. What you find here may not be what you came looking for. That difference is the point.
+      </p>
+    </div>
+  </section>
+
+  <!-- DOORS -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Where to begin</p>
+      <ul class="doors">
+        {
+          doors.map((door) => (
+            <li class="doors__item">
+              <p class="doors__intent">{door.intent}</p>
+              <a href={door.href} class="doors__link"><em>{door.label} →</em></a>
+              <p class="doors__description">{door.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="container">
+      <p class="closing__line">
+        What we keep returning to <em>deserves to be built well</em>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero__cta {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-sage-soft);
+    border-bottom: 1px solid var(--color-sage);
+    padding-bottom: 2px;
+    margin-top: var(--space-3);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .hero__cta:hover {
+    color: var(--color-terracotta-soft);
+    border-color: var(--color-terracotta-soft);
+  }
+</style>

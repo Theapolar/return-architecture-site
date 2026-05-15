@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const taxonomyItems = (await getCollection("taxonomy")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title="Taxonomy | Return Architecture"
+  description="A taxonomy of sustained relations with AI."
+>
+  <section class="section">
+    <div class="container content-width">
+      <div class="eyebrow">Taxonomy</div>
+      <h1>A map of what people actually want from AI relations.</h1>
+      <p>
+        Not all sustained exchange with AI is the same. This taxonomy exists to
+        separate different modes of relation that are often confused with one
+        another.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      {taxonomyItems.length === 0 ? (
+        <p>No taxonomy entries yet.</p>
+      ) : (
+        <ul class="taxonomy-list">
+          {taxonomyItems.map((item) => (
+            <li class="taxonomy-list__item">
+              <article>
+                <h2>{item.data.title}</h2>
+                <p>{item.data.summary}</p>
+
+                {item.data.conditions.length > 0 && (
+                  <div class="taxonomy-meta">
+                    <h3>Conditions</h3>
+                    <ul>
+                      {item.data.conditions.map((condition) => (
+                        <li>{condition}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {item.data.risks.length > 0 && (
+                  <div class="taxonomy-meta">
+                    <h3>Risks</h3>
+                    <ul>
+                      {item.data.risks.map((risk) => (
+                        <li>{risk}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </article>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .taxonomy-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .taxonomy-list__item {
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--color-line);
+    margin: 0;
+  }
+
+  .taxonomy-list__item:last-child {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .taxonomy-list__item h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .taxonomy-meta {
+    margin-top: var(--space-4);
+  }
+
+  .taxonomy-meta h3 {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-2);
+  }
+
+  .taxonomy-meta ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+</style>

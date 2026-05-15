@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const essays = (await getCollection("essays", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Essays | Return Architecture"
+  description="Original essays on sustained relations with AI."
+>
+  <section class="section">
+    <div class="container content-width">
+      <div class="eyebrow">Essays</div>
+      <h1>Original writing.</h1>
+      <p>
+        Essays are where the project's position can be developed at greater
+        length. They are part of the site, but they do not have to carry the
+        entire structure on their own.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      {essays.length === 0 ? (
+        <p>No essays published yet.</p>
+      ) : (
+        <ul class="essay-list">
+          {essays.map((essay) => (
+            <li class="essay-list__item">
+              <a href={`/essays/${essay.id}/`} class="essay-list__link">
+                <h2>{essay.data.title}</h2>
+                <p>{essay.data.description}</p>
+                <p class="essay-list__meta">
+                  {essay.data.pubDate.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .essay-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .essay-list__item {
+    border-top: 1px solid var(--color-line);
+    padding: var(--space-5) 0;
+    margin: 0;
+  }
+
+  .essay-list__item:last-child {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .essay-list__link {
+    display: block;
+  }
+
+  .essay-list__link h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .essay-list__link p {
+    margin-bottom: var(--space-3);
+  }
+
+  .essay-list__meta {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    margin-bottom: 0;
+  }
+</style>

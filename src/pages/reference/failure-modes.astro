@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const failureModes = (await getCollection("failureModes")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout
+  title="Failure Modes | Return Architecture"
+  description="Common distortions and risks in sustained relations with AI."
+>
+  <section class="section">
+    <div class="container content-width">
+      <div class="eyebrow">Failure Modes</div>
+      <h1>Common distortions in sustained exchange.</h1>
+      <p>
+        If longer-term human–AI relations matter, then their pathologies matter
+        too. This section identifies some of the more common ways these systems
+        and exchanges can become distorting.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      {failureModes.length === 0 ? (
+        <p>No failure mode entries yet.</p>
+      ) : (
+        <ul class="fm-list">
+          {failureModes.map((item) => (
+            <li class="fm-list__item">
+              <article>
+                <h2>{item.data.title}</h2>
+                <p>{item.data.summary}</p>
+
+                {item.data.signals.length > 0 && (
+                  <div class="fm-meta">
+                    <h3>Signals</h3>
+                    <ul>
+                      {item.data.signals.map((s) => (
+                        <li>{s}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {item.data.mitigations.length > 0 && (
+                  <div class="fm-meta">
+                    <h3>Mitigations</h3>
+                    <ul>
+                      {item.data.mitigations.map((m) => (
+                        <li>{m}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </article>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .fm-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fm-list__item {
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--color-line);
+    margin: 0;
+  }
+
+  .fm-list__item:last-child {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .fm-list__item h2 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .fm-meta {
+    margin-top: var(--space-4);
+  }
+
+  .fm-meta h3 {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-2);
+  }
+
+  .fm-meta ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+</style>

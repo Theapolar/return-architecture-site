@@ -1,0 +1,242 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const total = principles.length;
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+
+<BaseLayout
+  title="Principles | Return Architecture"
+  description="Core commitments for sustained relations with AI, held as design tensions rather than rules."
+>
+  <section class="section section--deep principles-hero">
+    <div class="container content-width-wide">
+      <div class="eyebrow eyebrow--on-deep">Principles</div>
+      <h1 class="display display--on-deep principles-hero__title">
+        Core commitments for sustained relations with AI.
+      </h1>
+      <p class="principles-hero__subhead">
+        These principles are not commandments. They are <em>design tensions</em>.
+      </p>
+      <p class="principles-hero__deck">
+        Return Architecture treats principles as pressures to hold in practice
+        — continuity without capture, memory without totalization, refusal
+        without abandonment, friction without punishment, intimacy without
+        extraction. Each principle below names a commitment and the way it
+        deforms when pursued without its counterweight.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--deep principles-section">
+    <div class="container content-width-wide">
+      <ol class="principles">
+        {
+          principles.map((principle) => (
+            <li class="principle">
+              <div class="principle__head">
+                <span class="principle__num">
+                  {pad(principle.data.order)}
+                  <span class="principle__total"> / {pad(total)}</span>
+                </span>
+                <h2 class="principle__title">
+                  {principle.data.title}
+                  <span class="principle__break"> — </span>
+                  <em class="principle__counter">
+                    {principle.data.conjunction} {principle.data.counter}.
+                  </em>
+                </h2>
+                <p class="principle__epigram">{principle.data.summary}</p>
+              </div>
+
+              <div class="principle__section">
+                <h3 class="principle__label">What it means</h3>
+                <p class="principle__body">{principle.data.meaning}</p>
+              </div>
+              <div class="principle__section">
+                <h3 class="principle__label">What can go wrong</h3>
+                <p class="principle__body">{principle.data.risk}</p>
+              </div>
+              <div class="principle__section">
+                <h3 class="principle__label">Design implication</h3>
+                <p class="principle__body">{principle.data.designTask}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="container content-width">
+      <p class="closing__line">
+        Principles are <em>pressures</em>, not rules. They are useful when held
+        together, in tension, and revised in practice.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Brighter overrides on deep bg for legibility ----------------------- */
+
+  .principles-hero,
+  .principles-section {
+    --c-bright: #fbf6e7;
+    --c-bright-muted: #ece3cb;
+    --c-bright-accent: #c6d4c8;
+  }
+
+  /* Hero --------------------------------------------------------------- */
+
+  .principles-hero {
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-7);
+  }
+
+  .principles-hero :global(.display--on-deep),
+  .principles-hero__title {
+    color: var(--c-bright);
+  }
+
+  .principles-hero__title {
+    margin-bottom: var(--space-5);
+    max-width: 22ch;
+  }
+
+  .principles-hero__subhead {
+    font-family: var(--font-sans);
+    font-size: clamp(1.25rem, 2vw, 1.625rem);
+    color: var(--c-bright);
+    font-weight: 400;
+    line-height: var(--leading-snug);
+    margin: 0 0 var(--space-5);
+    max-width: 36ch;
+  }
+
+  .principles-hero__subhead em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--c-bright-accent);
+  }
+
+  .principles-hero__deck {
+    font-family: var(--font-sans);
+    font-size: var(--text-md);
+    color: var(--c-bright-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 60ch;
+    letter-spacing: 0.005em;
+    margin: 0;
+  }
+
+  /* Principles --------------------------------------------------------- */
+
+  .principles-section {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-9);
+  }
+
+  .principles {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .principle {
+    margin: 0;
+    padding: var(--space-8) 0;
+    border-top: 1px solid var(--color-line-on-deep);
+  }
+
+  .principle:first-child {
+    border-top: 1px solid var(--color-line-on-deep);
+    padding-top: var(--space-7);
+  }
+
+  .principle:last-child {
+    padding-bottom: var(--space-5);
+  }
+
+  .principle__head {
+    margin-bottom: var(--space-6);
+  }
+
+  .principle__num {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--c-bright-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .principle__total {
+    color: var(--c-bright-muted);
+    opacity: 0.7;
+  }
+
+  .principle__title {
+    font-family: var(--font-sans);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: var(--leading-snug);
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    margin: 0 0 var(--space-4);
+    color: var(--c-bright);
+    max-width: 28ch;
+  }
+
+  .principle__break {
+    color: var(--c-bright-muted);
+  }
+
+  .principle__counter {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--c-bright-accent);
+    font-weight: 400;
+  }
+
+  .principle__epigram {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    color: var(--c-bright-muted);
+    margin: 0;
+    max-width: 50ch;
+  }
+
+  .principle__section {
+    margin-top: var(--space-5);
+    max-width: 64ch;
+  }
+
+  .principle__label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--c-bright-accent);
+    font-weight: 500;
+    margin: 0 0 var(--space-2);
+  }
+
+  .principle__body {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--c-bright);
+    letter-spacing: 0;
+  }
+
+</style>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const items = [
+  {
+    href: "/reference/taxonomy",
+    label: "Taxonomy",
+    description:
+      "A map of what people actually want from sustained AI exchange, and why those aims should not be collapsed into one category.",
+  },
+  {
+    href: "/reference/failure-modes",
+    label: "Failure Modes",
+    description:
+      "Common distortions, dependencies, design traps, and interpretive errors that emerge in longer-term human–AI interaction.",
+  },
+  {
+    href: "/reference/self-assessment",
+    label: "Self-Assessment",
+    description:
+      "A structured tool for examining motives, expectations, vulnerabilities, and readiness.",
+  },
+  {
+    href: "/reference/bibliography",
+    label: "Bibliography",
+    description:
+      "Curated and commented reading across philosophy, psychology, HCI, ethics, and adjacent work.",
+  },
+];
+---
+
+<BaseLayout
+  title="Reference | Return Architecture"
+  description="Structured reference materials for sustained relations with AI."
+>
+  <section class="section">
+    <div class="container content-width">
+      <div class="eyebrow">Reference</div>
+      <h1>Structured materials for recurring use.</h1>
+      <p>
+        This section collects the reference layer of the project: taxonomy,
+        failure modes, self-assessment, and bibliography. These materials are
+        meant to support repeated use, not just one-time reading.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <ul class="ref-list">
+        {
+          items.map((item) => (
+            <li class="ref-list__item">
+              <a href={item.href} class="ref-list__link panel">
+                <span class="ref-list__label">{item.label}</span>
+                <span class="ref-list__description">{item.description}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ref-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 720px) {
+    .ref-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .ref-list__item {
+    margin: 0;
+  }
+
+  .ref-list__link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    height: 100%;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .ref-list__link:hover {
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .ref-list__label {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+  }
+
+  .ref-list__description {
+    font-size: var(--text-md);
+    color: var(--color-text);
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const essays = await getCollection("essays", ({ data }) => !data.draft);
+
+  return essays.map((essay) => ({
+    params: { slug: essay.id },
+    props: { essay },
+  }));
+}
+
+const { essay } = Astro.props;
+const { Content } = await render(essay);
+---
+
+<BaseLayout
+  title={`${essay.data.title} | Return Architecture`}
+  description={essay.data.description}
+>
+  <article class="section">
+    <div class="container content-width">
+      <div class="eyebrow">Essay</div>
+      <h1>{essay.data.title}</h1>
+      <p class="essay-meta">
+        {essay.data.pubDate.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </p>
+      <p class="essay-description">{essay.data.description}</p>
+
+      <div class="essay-body">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .essay-meta {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-4);
+  }
+
+  .essay-description {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .essay-body {
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .essay-body :global(p) {
+    margin-bottom: var(--space-4);
+  }
+
+  .essay-body :global(h2) {
+    margin-top: var(--space-7);
+  }
+
+  .essay-body :global(ul),
+  .essay-body :global(ol) {
+    margin-bottom: var(--space-4);
+  }
+
+  .essay-body :global(blockquote) {
+    margin: var(--space-6) 0;
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--color-accent);
+    color: var(--color-text-muted);
+  }
+</style>

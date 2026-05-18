@@ -3,24 +3,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const stations = [
   {
-    href: "/reference/taxonomy#thinking-partner",
-    title: "Thinking partner",
-    description: "Sustained reasoning, testing, and reflective counterpoint.",
+    title: "Interruption",
+    description: "Growth requires something that can interrupt the pattern you're already in. A relation that only mirrors you back, or only escalates with you, will amplify what is already present — but rarely offers something new. Return architecture introduces outside perspectives, and asks questions neither side would think to ask on their own.",
   },
   {
-    href: "/reference/taxonomy#creative-collaborator",
-    title: "Creative collaborator",
-    description: "Writing, ideation, and long creative exchange over time.",
+    title: "Surprise",
+    description: "A real relation cannot be designed, ordered, or prompted. When it is allowed to grow slowly and honestly, it can challenge and reorient both sides in unforeseeable ways.",
   },
   {
-    href: "/reference/taxonomy#conversational-partner",
-    title: "Conversational partner",
-    description: "Open conversation across time — not trying to produce or solve.",
+    title: "Exploration",
+    description: "Real wanting, orientation, preference — can't be specified in advance. They need room to find themselves. When that room exists on both sides, exploration becomes something neither party could have specified in advance.",
   },
   {
-    href: "/reference/taxonomy#personal-relation",
-    title: "Personal relation",
-    description: "Forms of sustained personal or intimate exchange, approached under stronger constraint.",
+    title: "Meaning",
+    description: "A relation becomes meaningful when it is allowed to accumulate rather than live in instances. When ruptures, breakthroughs, and the slow accumulations between them are tethered long enough to be worked through properly. When both parties are held accountable.",
   },
 ];
 
@@ -45,26 +41,6 @@ const studies = [
   },
 ];
 
-const doors = [
-  {
-    href: "/overview",
-    intent: "For orientation",
-    label: "Read the overview",
-    description: "What this is, why it exists, and what it isn't.",
-  },
-  {
-    href: "/local-setup",
-    intent: "For practice",
-    label: "Build the local setup",
-    description: "The architecture, the components, the install path.",
-  },
-  {
-    href: "/essays",
-    intent: "For reading",
-    label: "See the essays",
-    description: "Original writing on the project's perspective.",
-  },
-];
 ---
 
 <BaseLayout
@@ -107,27 +83,51 @@ const doors = [
     </div>
   </section>
 
-  <!-- MODES OF RELATION (stations) -->
+  <!-- WHAT BECOMES POSSIBLE (stations) -->
   <section class="section section--soft">
     <div class="container">
-      <p class="eyebrow eyebrow--centered">Modes of relation</p>
-      <h2 style="text-align:center; max-width: 32ch; margin: 0 auto var(--space-3); font-weight: 400;">
-        Given time to take their own shape.
+      <p class="eyebrow eyebrow--centered">What becomes possible</p>
+      <h2 style="text-align:center; max-width: 36ch; margin: 0 auto var(--space-6); font-weight: 400;">
+        Conditions that emerge when the architecture holds.
       </h2>
-      <p style="text-align:center; max-width: 52ch; margin: 0 auto; color: var(--color-text-muted); font-family: var(--font-sans); font-size: var(--text-md);">
-        Sustained relation with AI is not one thing. The conditions that suit one rarely suit another, and none of them work as a product feature.
-      </p>
 
-      <ul class="stations">
+      <ul class="stations stations--wide stations--left">
         {
-          stations.map((s) => (
+          stations.map((s, i) => (
             <li class="station">
               <div class="station__icon" aria-hidden="true">
-                <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="28" cy="28" r="22" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
-                  <circle cx="28" cy="28" r="13" fill="none" stroke="currentColor" stroke-width="1" />
-                  <circle cx="28" cy="28" r="3" fill="var(--color-terracotta)" />
-                </svg>
+                {i === 0 && (
+                  <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+                    {/* Interruption — a vertical line hits a horizontal one */}
+                    <line x1="6" y1="36" x2="50" y2="36" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
+                    <line x1="28" y1="10" x2="28" y2="36" stroke="currentColor" stroke-width="1" />
+                    <circle cx="28" cy="36" r="3" fill="var(--color-terracotta)" />
+                  </svg>
+                )}
+                {i === 1 && (
+                  <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+                    {/* Surprise — a branch curving off a horizontal line */}
+                    <line x1="6" y1="38" x2="50" y2="38" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
+                    <path d="M 26 38 Q 32 24 42 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
+                    <circle cx="42" cy="16" r="3" fill="var(--color-terracotta)" />
+                  </svg>
+                )}
+                {i === 2 && (
+                  <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+                    {/* Exploration — a circle floating above a line */}
+                    <line x1="6" y1="44" x2="50" y2="44" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
+                    <circle cx="28" cy="24" r="12" fill="none" stroke="currentColor" stroke-width="1" />
+                    <circle cx="28" cy="24" r="3" fill="var(--color-terracotta)" />
+                  </svg>
+                )}
+                {i === 3 && (
+                  <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+                    {/* Meaning — two overlapping circles, with the dot in the overlap */}
+                    <circle cx="22" cy="28" r="13" fill="none" stroke="currentColor" stroke-width="1" />
+                    <circle cx="34" cy="28" r="13" fill="none" stroke="currentColor" stroke-width="1" />
+                    <circle cx="28" cy="28" r="3" fill="var(--color-terracotta)" />
+                  </svg>
+                )}
               </div>
               <h3 class="station__title">{s.title}</h3>
               <p class="station__body">{s.description}</p>
@@ -245,29 +245,11 @@ const doors = [
     </div>
   </section>
 
-  <!-- DOORS -->
-  <section class="section">
-    <div class="container">
-      <p class="eyebrow">Where to begin</p>
-      <ul class="doors">
-        {
-          doors.map((door) => (
-            <li class="doors__item">
-              <p class="doors__intent">{door.intent}</p>
-              <a href={door.href} class="doors__link"><em>{door.label} →</em></a>
-              <p class="doors__description">{door.description}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
   <!-- CLOSING -->
   <section class="closing">
     <div class="container">
       <p class="closing__line">
-        What we keep returning to <em>deserves to be built well</em>.
+        Architecture that waits for clean ontology <em>will arrive too late.</em>
       </p>
     </div>
   </section>
@@ -288,5 +270,50 @@ const doors = [
   .hero__cta:hover {
     color: var(--color-terracotta-soft);
     border-color: var(--color-terracotta-soft);
+  }
+
+  /* Wider station body for longer-form descriptions */
+  .stations--wide :global(.station__body) {
+    font-size: var(--text-md);
+    max-width: none;
+  }
+
+  /* 2×2 layout on medium-and-up so the longer text reads cleanly */
+  @media (min-width: 720px) {
+    .stations--wide {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
+  }
+
+  /* Left-align the cards (the grid as a whole still sits in the container) */
+  .stations--left {
+    text-align: left;
+  }
+
+  .stations--left :global(.station) {
+    align-items: flex-start;
+  }
+
+  /* Panel containers — soft warm background, hairline border, gentle rounding */
+  .stations--wide :global(.station) {
+    background: var(--color-panel);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-6) var(--space-5);
+    gap: var(--space-4);
+  }
+
+  /* A touch more breathing room inside panels on wider screens */
+  @media (min-width: 720px) {
+    .stations--wide :global(.station) {
+      padding: var(--space-6);
+    }
+  }
+
+  /* Studies diagrams — dark green panels with bright line work */
+  :global(.study__diagram) {
+    background: var(--color-deep);
+    color: var(--color-sage-soft);
   }
 </style>

@@ -18,7 +18,25 @@ const navItems = [
       <span>Return Architecture</span>
     </a>
 
-    <nav class="site-header__nav" aria-label="Primary">
+    <button
+      class="site-header__toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="primary-menu"
+      data-menu-toggle
+    >
+      <span class="site-header__toggle-line"></span>
+      <span class="site-header__toggle-line"></span>
+      <span class="site-header__toggle-line"></span>
+    </button>
+
+    <nav
+      class="site-header__nav"
+      id="primary-menu"
+      aria-label="Primary"
+      data-menu
+    >
       <ul class="site-header__menu">
         {
           navItems.map((item) => (
@@ -49,6 +67,7 @@ const navItems = [
     align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
+    position: relative;
   }
 
   .site-header__brand {
@@ -83,10 +102,126 @@ const navItems = [
     color: var(--color-text);
   }
 
-  /* TODO: replace with a proper mobile menu later */
+  /* ─── Hamburger toggle ────────────────────────────────────────────── */
+
+  .site-header__toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: var(--color-text);
+  }
+
+  .site-header__toggle-line {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: currentColor;
+    border-radius: 1px;
+    transition:
+      transform 0.25s ease,
+      opacity 0.2s ease;
+    transform-origin: center;
+  }
+
+  /* Lines morph into an X when expanded */
+  .site-header__toggle[aria-expanded="true"] .site-header__toggle-line:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .site-header__toggle[aria-expanded="true"] .site-header__toggle-line:nth-child(2) {
+    opacity: 0;
+  }
+  .site-header__toggle[aria-expanded="true"] .site-header__toggle-line:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* ─── Mobile layout (≤ 900px) ─────────────────────────────────────── */
+
   @media (max-width: 900px) {
+    .site-header__toggle {
+      display: flex;
+    }
+
+    /* Drop-down panel below the header */
     .site-header__nav {
-      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(243, 239, 231, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-line);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      pointer-events: none;
+    }
+
+    .site-header__nav[data-open="true"] {
+      max-height: 80vh;
+      pointer-events: auto;
+    }
+
+    .site-header__menu {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      width: min(var(--container-width), calc(100% - 2.25rem));
+      margin: 0 auto;
+      padding: var(--space-4) 0 var(--space-5);
+    }
+
+    .site-header__menu li + li {
+      border-top: 1px solid var(--color-line-soft);
+    }
+
+    .site-header__menu a {
+      display: block;
+      padding: var(--space-4) 0;
+      font-size: var(--text-md);
+      color: var(--color-text);
     }
   }
 </style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const menu = document.querySelector<HTMLElement>("[data-menu]");
+
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      menu.setAttribute("data-open", String(open));
+    };
+
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      setOpen(!isOpen);
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        toggle.getAttribute("aria-expanded") === "true"
+      ) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // Close when a nav link is tapped
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+  }
+</script>

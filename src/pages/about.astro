@@ -122,6 +122,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           this project more clearly, and is my main copy and editorial
           collaborator on this site and related content.
         </p>
+
+        <p class="author-substack">
+          The personal and intellectual background to this project lives on
+          my
+          <a
+            href="https://substack.com/@theaborch"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="substack-link"
+          >
+            Substack</a>, alongside essays on adjacent questions.
+        </p>
       </div>
     </div>
   </section>
@@ -240,5 +252,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .author-collab strong {
     color: var(--color-sage-deep);
     font-weight: 500;
+  }
+
+  .author-substack {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-line-soft);
+    font-style: italic;
+  }
+
+  .substack-link {
+    color: var(--color-sage-deep);
+    border-bottom: 1px solid var(--color-sage);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .substack-link:hover {
+    color: var(--color-terracotta);
+    border-color: var(--color-terracotta);
   }
 </style>

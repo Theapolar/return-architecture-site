@@ -13,18 +13,6 @@ const essays = (await getCollection("essays", ({ data }) => !data.draft)).sort(
 >
   <section class="section">
     <div class="container content-width">
-      <div class="eyebrow">Essays</div>
-      <h1>Original writing.</h1>
-      <p>
-        Essays are where the project's position can be developed at greater
-        length. They are part of the site, but they do not have to carry the
-        entire structure on their own.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container content-width">
       {essays.length === 0 ? (
         <p>No essays published yet.</p>
       ) : (

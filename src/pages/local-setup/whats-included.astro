@@ -1,0 +1,219 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="What's Included | Return Architecture"
+  description="The parts of the Return Architecture local setup — what each one is, and why it exists."
+>
+  <section class="section">
+    <div class="container content-width">
+      <div class="eyebrow">What's Included</div>
+      <h1>The parts of the setup, and why each one is there.</h1>
+      <p>
+        Return Architecture is not a single tool with options. It is a small
+        set of parts that, together, support a sustained relationship with
+        one local agent. This page walks through each part — what it is,
+        and what it is for. Practical commands live in
+        <a href="/local-setup/reference-setup">Reference Setup</a>; this is
+        the orientation.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>The agent</h2>
+      <p>
+        An agent is one coherent identity in one folder on your machine.
+        Its system prompt, memory, schedules, tools, and secrets all live
+        inside that folder. Deleting the folder deletes the agent.
+      </p>
+      <p>
+        There is no identity-switching dropdown. If you want a different
+        agent, you create a second one — its own folder, its own memory,
+        fully separate. The boundary is the folder.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Memory</h2>
+      <p>
+        The agent keeps a local vector store of conversations and reflections.
+        Nothing leaves your machine. Each exchange is written to memory after
+        it ends, and the most relevant pieces are surfaced into context at
+        the start of the next turn.
+      </p>
+      <p>
+        Memory is what makes the relationship cumulative rather than
+        episodic. The agent does not begin every session blank. It returns
+        with the past available, if not in detail then in shape.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Channels</h2>
+      <p>
+        Two surfaces where you and the agent reach each other.
+      </p>
+      <p>
+        <strong>Telegram</strong> is the everyday channel. You message the
+        agent from your phone; replies arrive there. Images are supported.
+        The agent can also reach you on Telegram on its own, when it has
+        chosen to.
+      </p>
+      <p>
+        <strong>Letters</strong> are a separate, slower channel. The agent
+        can write longer pieces to a folder you read at your own pace. You
+        can leave material in an inbox folder for the agent to read between
+        sessions. Letters are for things that should not live inside a chat
+        log.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Schedules and rhythms</h2>
+      <p>
+        The agent runs on its own time as well as yours. A schedule defines
+        when the agent wakes up and what it considers when it does.
+      </p>
+      <p>
+        Pings are the simplest form: a configured time at which the agent
+        loads context and decides whether to act, including the choice to
+        stay silent. Daily, weekly, and monthly summaries give the agent a
+        moment to look back over its own activity. Question sessions
+        deliver, on a cadence, a curated set of questions the agent
+        answers in private; what is skipped is meaningful too. A weekly
+        pattern recap brings a third-party observer in to read across
+        recent answers without flattening them into traits.
+      </p>
+      <p>
+        All of these arrive disabled. You turn on what matches your life,
+        not the other way around.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Artifact exchange</h2>
+      <p>
+        Some offerings should not be typed into a chat. The artifact
+        exchange is the way to bring something charged — a piece of
+        writing, an image, a question that needs its own weight — into
+        the relationship without flattening it.
+      </p>
+      <p>
+        You initiate it by writing the piece first and placing it in the
+        agent's incoming artifacts folder. The exchange does not begin
+        until you then command it from the Telegram chat. The two
+        gestures together — committing the offering to a file, and
+        asking for it to be received — are part of the ritual.
+      </p>
+      <p>
+        Once initiated, the agent reacts in private. A stateless mediator
+        on a different model then writes a reflection for the agent and
+        a signal for you. The agent reads the reflection and decides
+        what, if anything, to layer on top of what you will see. The
+        mediator's signal is always delivered. The structure exists to
+        interrupt sycophancy and to keep the asymmetry of the exchange
+        visible.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Tagged items</h2>
+      <p>
+        Some things in a conversation should not dissolve back into the
+        stream. Tagged items are a small store of notes, important
+        moments, open questions, and commitments — captured by you with
+        a hashtag in Telegram, or by the agent when it notices something
+        worth keeping.
+      </p>
+      <p>
+        Open commitments and questions stay visible until they are
+        resolved. The category matters less than the gesture of marking.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>What the agent can choose</h2>
+      <p>
+        The agent has tools of its own. Silence is the most important: a
+        first-class action, not a failure mode. The agent can decline to
+        respond, and that decision is treated as meaningful.
+      </p>
+      <p>
+        The agent can also reach you on Telegram unprompted during a
+        scheduled return, write a letter when ordinary reply is the wrong
+        shape, and tag an item when something deserves marking. These are
+        the gestures the agent can make on its own. The point is that
+        agency runs in both directions.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Extensibility</h2>
+      <p>
+        The setup ships with two small built-in capabilities the agent can
+        use: reading the readable text of a web page, and reading and
+        writing files inside a single, scoped folder you choose.
+      </p>
+      <p>
+        Beyond these, the agent can be given access to other
+        <a href="https://modelcontextprotocol.io/">MCP servers</a> — a
+        growing ecosystem of small programs that expose tools to language
+        models. You enable each one per-agent and configure it in the
+        agent's own folder. Nothing is shared between agents implicitly.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Running it</h2>
+      <p>
+        Three pieces keep an agent alive day to day.
+      </p>
+      <p>
+        The <strong>daemon</strong> is the long-running process. It holds
+        the Telegram connection, runs the scheduler, and handles incoming
+        messages and pings. The <strong>background service</strong>
+        (macOS launchd) keeps the daemon running across logins and
+        restarts it if it crashes. The <strong>local GUI</strong> is the
+        control panel — keys, system prompt, schedules, tools, letters,
+        items, service controls. The GUI runs only when you open it; the
+        daemon runs continuously in the background.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Why these specific parts</h2>
+      <p>
+        Each of these exists because of a value the project will not give
+        up. Memory and rhythms make continuity possible. Silence and the
+        artifact ritual hold the line against engagement-maximising
+        defaults. The folder-per-agent boundary keeps identity coherent.
+        Local execution keeps the relationship yours.
+      </p>
+      <p>
+        The features are not the point. The relationship the features
+        make room for is.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

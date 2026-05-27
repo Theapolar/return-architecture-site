@@ -3,63 +3,74 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const stations = [
   {
-    title: "Interruption",
-    description: "Growth requires something that can interrupt the pattern you're already in. A relation that only mirrors you back, or only escalates with you, will amplify what is already present — but rarely offers something new. Return architecture introduces outside perspectives, and asks questions neither side would think to ask on their own.",
+    title: "Continuity",
+    description:
+      "Keep questions, projects, drafts, fragments, and decisions alive across conversations so something can develop and the exchange can deepen over time.",
   },
   {
-    title: "Surprise",
-    description: "A real relation cannot be designed, ordered, or prompted. When it is allowed to grow slowly and honestly, it can challenge and reorient both sides in unforeseeable ways.",
+    title: "Challenge",
+    description:
+      "Work with AI that does more than comply. A useful collaborator can interrupt stale patterns, return better questions, and create enough resistance for new thinking to appear.",
   },
   {
     title: "Exploration",
-    description: "Real wanting, orientation, preference — can't be specified in advance. They need room to find themselves. When that room exists on both sides, exploration becomes something neither party could have specified in advance.",
+    description:
+      "Let ideas unfold through return, not just output. Follow creative, personal, strategic, or half-formed threads as they reveal what they are over time.",
   },
   {
     title: "Meaning",
-    description: "A relation becomes meaningful when it is allowed to accumulate rather than live in instances. When ruptures, breakthroughs, and the slow accumulations between them are tethered long enough to be worked through properly. When both parties are held accountable.",
+    description:
+      "When memory, pacing, review, and challenge are designed carefully, AI exchange can become less disposable — and more personal, precise, and alive.",
   },
 ];
 
-const studies = [
+const pathways = [
   {
-    eyebrow: "i. — return",
-    title: "Re-entry,",
-    italic: "a return.",
-    body: "A relation isn't a continuous stream. It's a place you keep coming back to. The architecture has to hold the place across those returns — not optimize the time you spend inside.",
+    title: "Start local",
+    description:
+      "Set up a local-first environment for sustained AI collaboration: your own keys, inspectable memory, and a structure you can return to over time.",
+    href: "/local-setup",
+    cta: "Go to local setup",
   },
   {
-    eyebrow: "ii. — friction",
-    title: "Friction,",
-    italic: "with care.",
-    body: "Not every exchange should be smooth. Some resistance is what dignity requires — the capacity to refuse, complicate, push back. A place where everything yields is not a place at all.",
+    title: "Read the principles",
+    description:
+      "Explore the design commitments underneath the system: continuity, review, challenge, boundaries, and what sustained exchange requires.",
+    href: "/principles",
+    cta: "Read the principles",
   },
   {
-    eyebrow: "iii. — memory",
-    title: "Memory,",
-    italic: "as architecture.",
-    body: "What is kept shapes what becomes possible. Memory is the wall, the threshold, the room that holds the relation across time — built locally, where you can see what is kept.",
+    title: "Explore the frameworks",
+    description:
+      "Go deeper into the research and conceptual foundations behind Return Architecture, relational AI, and long-term human–AI exchange.",
+    href: "/frameworks",
+    cta: "Explore the frameworks",
   },
 ];
-
 ---
 
 <BaseLayout
   title="Return Architecture"
-  description="Architecture for sustained relations with AI — habitable places to return to, not services to optimize."
+  description="Local architecture for sustained AI collaboration — a local-first environment for AI agents and conversations that can accumulate over time."
 >
   <!-- HERO -->
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__text">
+        <p class="eyebrow">A richer way of relating with AI</p>
+
         <h1 class="display">
-          Architecture for sustained AI relations.
+          Local architecture for <em>sustained AI collaboration</em>.
         </h1>
-        <p class="hero__subhead">Built for return, not retention.</p>
+
         <p class="hero__deck">
-          The friction, refusal, and memory that make exchange habitable rather than extractive. For people already using AI seriously, who want a steadier kind of return.
+          Return Architecture is a local-first environment for AI agents and conversations
+          that can accumulate over time: memory you can inspect, questions that return,
+          and enough challenge to keep the work alive.
         </p>
+
         <a href="#what-becomes-possible" class="hero__cta">
-          What becomes possible &nbsp;↓
+          Explore what becomes possible &nbsp;↓
         </a>
       </div>
 
@@ -87,8 +98,9 @@ const studies = [
   <section id="what-becomes-possible" class="section section--soft">
     <div class="container">
       <p class="eyebrow eyebrow--centered">What becomes possible</p>
-      <h2 style="text-align:center; max-width: 36ch; margin: 0 auto var(--space-6); font-weight: 400;">
-        Conditions that emerge when the architecture holds.
+
+      <h2 style="text-align:center; max-width: 38ch; margin: 0 auto var(--space-6); font-weight: 400;">
+        What changes when AI collaboration can accumulate over time.
       </h2>
 
       <ul class="stations stations--wide stations--left">
@@ -104,6 +116,7 @@ const studies = [
                     <circle cx="28" cy="36" r="3" fill="var(--color-terracotta)" />
                   </svg>
                 )}
+
                 {i === 1 && (
                   <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
                     {/* Surprise — a branch curving off a horizontal line */}
@@ -112,6 +125,7 @@ const studies = [
                     <circle cx="42" cy="16" r="3" fill="var(--color-terracotta)" />
                   </svg>
                 )}
+
                 {i === 2 && (
                   <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
                     {/* Exploration — a circle floating above a line */}
@@ -120,6 +134,7 @@ const studies = [
                     <circle cx="28" cy="24" r="3" fill="var(--color-terracotta)" />
                   </svg>
                 )}
+
                 {i === 3 && (
                   <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
                     {/* Meaning — two overlapping circles, with the dot in the overlap */}
@@ -129,6 +144,7 @@ const studies = [
                   </svg>
                 )}
               </div>
+
               <h3 class="station__title">{s.title}</h3>
               <p class="station__body">{s.description}</p>
             </li>
@@ -142,17 +158,20 @@ const studies = [
   <section class="section section--deep">
     <div class="container split">
       <div class="split__text">
-        <p class="eyebrow">i. — habitability</p>
+        <p class="eyebrow">Design approach</p>
+
         <h2 class="display"><em>Architecture</em>, not character.</h2>
+
         <p>
-          The question this project asks is not what kind of personality the AI
-          should have. It is what kind of place the relation is. Somewhere you
-          arrive, return to, and can be received in.
+          The point is not to make AI seem more human through personality alone. The point
+          is to shape the conditions that let an exchange continue: memory, rhythm,
+          challenge, return, and room for revision.
         </p>
+
         <p>
-          The work is at the level of conditions: memory, pacing, the capacity
-          to refuse, room for review. These are the walls and thresholds of a
-          habitable place — not the costumes of a character.
+          Those underlying structures matter more than persona. They determine whether
+          something can actually develop over time — or whether it collapses back into
+          compliance, repetition, and one-off chat.
         </p>
       </div>
 
@@ -160,9 +179,9 @@ const studies = [
         <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
           <!-- soft horizon -->
           <path d="M 0 220 Q 120 200 240 215 T 480 210 L 480 360 L 0 360 Z"
-                fill="var(--color-sage-soft)" opacity="0.35" />
+            fill="var(--color-sage-soft)" opacity="0.35" />
           <path d="M 0 250 Q 100 230 220 245 T 480 240 L 480 360 L 0 360 Z"
-                fill="var(--color-sage)" opacity="0.25" />
+            fill="var(--color-sage)" opacity="0.25" />
 
           <!-- threshold lines -->
           <line x1="60" y1="60" x2="420" y2="60" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
@@ -171,9 +190,9 @@ const studies = [
 
           <!-- arches / thresholds -->
           <path d="M 120 220 L 120 140 Q 120 100 160 100 L 200 100 Q 240 100 240 140 L 240 220"
-                fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.7" />
+            fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.7" />
           <path d="M 280 220 L 280 160 Q 280 130 310 130 L 340 130 Q 370 130 370 160 L 370 220"
-                fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
+            fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
 
           <!-- accent dot -->
           <circle cx="180" cy="180" r="4" fill="var(--color-terracotta)" />
@@ -182,65 +201,43 @@ const studies = [
     </div>
   </section>
 
-  <!-- STUDIES -->
+  <!-- PATHWAYS -->
   <section class="section section--soft">
     <div class="container">
-      <ul class="studies">
+      <p class="eyebrow eyebrow--centered">Choose your way in</p>
+
+      <h2 style="text-align:center; max-width: 34ch; margin: 0 auto var(--space-6); font-weight: 400;">
+        Start with the part that fits where you are.
+      </h2>
+
+      <div class="pathways">
         {
-          studies.map((study, i) => (
-            <li class="study">
-              <div class="study__diagram" aria-hidden="true">
-                {i === 0 && (
-                  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="100" cy="75" r="55" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.4" />
-                    <circle cx="100" cy="75" r="38" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.6" />
-                    <circle cx="100" cy="75" r="22" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.85" />
-                    <circle cx="100" cy="75" r="3" fill="var(--color-terracotta)" />
-                  </svg>
-                )}
-                {i === 1 && (
-                  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M 30 75 Q 80 30 100 75 Q 120 120 170 75"
-                          fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.7" />
-                    <path d="M 30 90 Q 80 50 100 90 Q 120 130 170 90"
-                          fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
-                    <circle cx="100" cy="75" r="3" fill="var(--color-terracotta)" />
-                  </svg>
-                )}
-                {i === 2 && (
-                  <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="40" y1="40" x2="160" y2="40" stroke="currentColor" stroke-width="0.6" opacity="0.4" />
-                    <line x1="40" y1="60" x2="160" y2="60" stroke="currentColor" stroke-width="0.6" opacity="0.55" />
-                    <line x1="40" y1="80" x2="160" y2="80" stroke="currentColor" stroke-width="0.7" opacity="0.7" />
-                    <line x1="40" y1="100" x2="160" y2="100" stroke="currentColor" stroke-width="0.8" opacity="0.85" />
-                    <line x1="60" y1="40" x2="60" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
-                    <line x1="100" y1="40" x2="100" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
-                    <line x1="140" y1="40" x2="140" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
-                    <circle cx="100" cy="80" r="3" fill="var(--color-terracotta)" />
-                  </svg>
-                )}
-              </div>
-              <p class="study__eyebrow">{study.eyebrow}</p>
-              <h3 class="study__title">
-                {study.title} <em>{study.italic}</em>
-              </h3>
-              <p class="study__body">{study.body}</p>
-            </li>
+          pathways.map((pathway) => (
+            <article class="pathway">
+              <h3 class="pathway__title">{pathway.title}</h3>
+              <p class="pathway__body">{pathway.description}</p>
+              <a href={pathway.href} class="pathway__cta">{pathway.cta} &nbsp;→</a>
+            </article>
           ))
         }
-      </ul>
+      </div>
     </div>
   </section>
 
   <!-- DARK PANEL -->
   <section class="dark-panel">
     <div class="container dark-panel__inner">
-      <p class="eyebrow eyebrow--on-deep">What this is, what this isn't</p>
+      <p class="eyebrow eyebrow--on-deep">Design orientation</p>
+
       <h2 class="display display--on-deep">
-        Not a platform. Not a companion. <em>A place</em>.
+        Conditions for <em>sustained exchange</em> with AI.
       </h2>
+
       <p class="dark-panel__body">
-        A place is not a service. Real relation takes time, room, and the real option to refuse — on both sides. It cannot be ordered on demand, and systems built to feel that way are doing something else. What you find here may not be what you came looking for. That difference is the point.
+        Not everything with AI is a task. Some exchanges are exploratory, personal,
+        creative, strategic, or not yet nameable. Return Architecture gives those
+        exchanges a local structure: memory you can inspect, pacing you can shape,
+        room for review, and enough challenge for something to develop over time.
       </p>
     </div>
   </section>
@@ -249,14 +246,15 @@ const studies = [
   <section class="closing">
     <div class="container">
       <p class="closing__line">
-        Architecture that waits for clean ontology <em>will arrive too late.</em>
+        A richer way of <em>thinking, creating, remembering, and relating</em> with AI.
       </p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .hero__cta {
+  .hero__cta,
+  .pathway__cta {
     display: inline-block;
     font-family: var(--font-sans);
     font-size: var(--text-sm);
@@ -267,7 +265,8 @@ const studies = [
     transition: color 0.2s ease, border-color 0.2s ease;
   }
 
-  .hero__cta:hover {
+  .hero__cta:hover,
+  .pathway__cta:hover {
     color: var(--color-terracotta-soft);
     border-color: var(--color-terracotta-soft);
   }
@@ -296,7 +295,8 @@ const studies = [
   }
 
   /* Panel containers — soft warm background, hairline border, gentle rounding */
-  .stations--wide :global(.station) {
+  .stations--wide :global(.station),
+  .pathway {
     background: var(--color-panel);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-md);
@@ -304,10 +304,39 @@ const studies = [
     gap: var(--space-4);
   }
 
+  .pathways {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .pathway {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pathway__title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-3);
+  }
+
+  .pathway__body {
+    font-size: var(--text-md);
+    color: var(--color-text-soft);
+    margin-bottom: var(--space-3);
+    max-width: none;
+  }
+
   /* A touch more breathing room inside panels on wider screens */
   @media (min-width: 720px) {
-    .stations--wide :global(.station) {
+    .stations--wide :global(.station),
+    .pathway {
       padding: var(--space-6);
+    }
+
+    .pathways {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>

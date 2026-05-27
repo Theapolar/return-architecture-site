@@ -7,12 +7,53 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  /** Path to an OG image (1200×630 recommended), relative to the site root. */
+  ogImage?: string;
+  /** Override the page type for Open Graph. Defaults to "website". */
+  ogType?: "website" | "article" | "profile";
 }
 
 const {
   title = "Return Architecture",
-  description = "Architecture for sustained relations with AI.",
+  description = "Architecture for sustained relations with AI — habitable places to return to, not services to optimize.",
+  ogImage = "/og-default.png",
+  ogType = "website",
 } = Astro.props;
+
+// Build absolute URLs — required for OG tags and canonical links.
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "https://returnarchitecture.com";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageUrl = new URL(ogImage, siteUrl).toString();
+
+// JSON-LD: WebSite + Person (creator)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: "Return Architecture",
+      description:
+        "Architecture for sustained relations with AI — principles, frameworks, and a local environment for continuity, memory, and reflection.",
+      inLanguage: "en",
+      creator: { "@id": `${siteUrl}/#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Thea Borch",
+      url: `${siteUrl}/about/`,
+      jobTitle: "Writer, designer, and architect of sustained AI relations",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Oslo",
+        addressCountry: "NO",
+      },
+      sameAs: ["https://substack.com/@theaborch"],
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -20,10 +61,35 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Core -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Return Architecture" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

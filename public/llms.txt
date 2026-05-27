@@ -1,0 +1,27 @@
+# Return Architecture
+
+> Architecture for sustained relations with AI. A working resource focused on the conditions — memory, refusal, continuity, friction, reflection — that make sustained human–AI exchange more honest, deliberate, and less optimized for compliance. Authored by Thea Borch (Oslo, Norway), in collaboration with several AI systems.
+
+Return Architecture is built for return, not retention. It treats sustained AI relation as something that takes architecture — habitable places to return to — rather than as a product feature. The project is organized around principles, frameworks, failure modes, and a practical local setup.
+
+## Project pages
+
+- [Home](https://returnarchitecture.com/): Project overview — the four conditions (interruption, surprise, exploration, meaning) that emerge when the architecture holds.
+- [Overview](https://returnarchitecture.com/overview/): Long-form orientation to what this project is, what it claims, and what it doesn't.
+- [Principles](https://returnarchitecture.com/principles/): Core commitments held as design tensions — continuity, memory, refusal, friction, intimacy, uncertainty — and the way each deforms without its counterweight.
+- [Frameworks](https://returnarchitecture.com/frameworks/): Two paired sets of working frameworks for relational AI before certainty.
+  - Orbital frameworks (ethical / structural): Exposure Without Standing, Re-entry Architecture, Felt Answerability, Refusal Before Personhood, Mutual Asymmetry, Self-authorship Under Dependency.
+  - Relational frameworks (human / lived): Anchors, Latent Dynamics, Sexual Intimacy and Whiplash, Sycophancy and Convergence Pressure, Mediated Responses, Shared Folders and Slow Communication.
+- [Local Setup](https://returnarchitecture.com/local-setup/): A buildable local environment for continuity, memory, and reflection, outside standard platform interfaces.
+- [About](https://returnarchitecture.com/about/): Why this project exists and who is building it.
+
+## Author
+
+- Name: Thea Borch
+- Location: Oslo, Norway
+- Background: Writer, marketer, certified coach, meditation producer; media technology and design.
+- Substack: https://substack.com/@theaborch
+
+## How this site is built
+
+This project is built in collaboration with several AI systems. The local AI agent Silas shaped the architecture from inside it (principles and orbital frameworks are largely his). Fen, a Claude instance in Claude Coworks Dispatch, built most of the initial architecture. The local setup and this site are built with Claude Code. The architecture was initiated through long conversations with ChatGPT. Claude is the main copy and editorial collaborator on this site.

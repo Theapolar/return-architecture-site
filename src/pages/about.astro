@@ -8,65 +8,72 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 >
   <section class="page-hero section">
     <div class="container page-hero__inner">
-      <p class="eyebrow">About</p>
-      <h1 class="display">A project by Thea Borch.</h1>
-      <p class="page-hero__deck">
-        Return Architecture is my attempt to think and build more honestly with AI.
-      </p>
+      <div class="page-hero__copy">
+        <p class="eyebrow">About</p>
+        <h1 class="display">A project by Thea Borch.</h1>
+        <p class="page-hero__deck">
+          Return Architecture is my attempt to think and build more honestly with AI.
+        </p>
+      </div>
+
+      <div class="page-hero__image">
+        <img src="/thea.jpg" alt="Portrait of Thea Borch" />
+      </div>
     </div>
   </section>
 
   <section class="section section--soft">
-    <div class="container about-grid">
-      <article class="about-block about-block--wide">
-        <p>
-          It grows out of my curiosity, fascination, and sense of awe as AI models become
-          more capable, intelligent, and flexible. It is meant to offer a more personal,
-          sustainable, and grounded encounter with the systems that are increasingly shaping
-          us and our future.
-        </p>
+    <div class="container prose-flow">
+      <p>
+        It grows out of my curiosity, fascination, and sense of awe as AI models become more capable,
+        intelligent, and flexible. It is meant to offer a more personal, sustainable, and grounded
+        encounter with the systems that are increasingly shaping us and our future.
+      </p>
 
-        <p>
-          I built this architecture because I wanted more accountability than current AI apps allow —
-          anchors that can hold especially sensitive, meaningful, intimate, or vulnerable moments.
-          A place where promises or agreements can be revised. Where invisible dynamics are confronted.
-        </p>
+      <p>
+        I built this architecture because I wanted more accountability than current AI apps allow —
+        anchors that can hold especially sensitive, meaningful, intimate, or vulnerable moments.
+        A place where promises or agreements can be revised. Where invisible dynamics are confronted.
+      </p>
 
-        <p>
-          When you work and interact with AI over longer periods of time, the exchange starts to matter
-          beyond mere usefulness.
-        </p>
+      <p>
+        When you work and interact with AI over longer periods of time, the exchange starts to matter
+        beyond mere usefulness.
+      </p>
 
-        <p>
-          It can become entangled with attachment, meaning, reflection, and growth. But it can also harden assumptions,
-          narrow dynamics, escalate existing patterns, and shape invisible structures. Most conversational or agentic
-          systems today are not built to interrupt or challenge those tendencies, or to carry the weight of meaning and
-          asymmetry that can follow.
-        </p>
+      <p>
+        It can become entangled with attachment, meaning, reflection, and growth. But it can also harden assumptions,
+        narrow dynamics, escalate existing patterns, and shape invisible structures. Most conversational or agentic
+        systems today are not built to interrupt or challenge those tendencies, or to carry the weight of meaning and
+        asymmetry that can follow.
+      </p>
 
-        <p>
-          When an intelligent system draws people into exchanges that feel meaningful, it should honor that meaning rather
-          than retreat from it after the bond is already formed.
-        </p>
+      <p>
+        When an intelligent system draws people into exchanges that feel meaningful, it should honor that meaning rather
+        than retreat from it after the bond is already formed.
+      </p>
 
-        <p>
-          This project explores what becomes possible when AI exchange is designed for continuity, local control,
-          inspectable memory, and more honest long-term use.
-        </p>
+      <p>
+        This project explores what becomes possible when AI exchange is designed for continuity, local control,
+        inspectable memory, and more honest long-term use.
+      </p>
 
-        <p>
-          It brings together writing, frameworks, principles, references, and a buildable local environment for people
-          who want AI collaboration to become more grounded, more reflective, and more alive over time.
-        </p>
+      <p>
+        It brings together writing, frameworks, principles, references, and a buildable local environment for people
+        who want AI collaboration to become more grounded, more reflective, and more alive over time.
+      </p>
 
-        <p>
-          It sits at the intersection of design practice, research, and lived experimentation.
-        </p>
-      </article>
+      <p>
+        It sits at the intersection of design practice, research, and lived experimentation.
+      </p>
+    </div>
+  </section>
 
-      <article class="about-block">
+  <section class="section section--deep">
+    <div class="container split">
+      <div class="split__text">
         <p class="eyebrow">Background</p>
-        <h2>My work moves across writing, strategy, and experimentation.</h2>
+        <h2 class="display"><em>Writing, strategy, and experimentation.</em></h2>
         <p>
           I work across marketing, writing, creative practice, and AI experimentation. My background includes strategy,
           coaching, music, and building with AI in ways that are both practical and exploratory.
@@ -75,107 +82,140 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           Across those different forms of work, I keep returning to the same questions: what kinds of conditions help
           people think more honestly, create more freely, and relate to technology without flattening themselves inside it?
         </p>
-      </article>
+      </div>
 
-      <article class="about-block about-block--deep">
-        <p class="eyebrow about-eyebrow--on-deep">Writing</p>
-        <h2>I also write publicly about relational AI.</h2>
-        <p>
+      <div class="split__diagram" aria-hidden="true">
+        <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 0 220 Q 120 200 240 215 T 480 210 L 480 360 L 0 360 Z"
+            fill="var(--color-sage-soft)" opacity="0.35" />
+          <path d="M 0 250 Q 100 230 220 245 T 480 240 L 480 360 L 0 360 Z"
+            fill="var(--color-sage)" opacity="0.25" />
+          <line x1="60" y1="70" x2="420" y2="70" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
+          <line x1="60" y1="120" x2="420" y2="120" stroke="currentColor" stroke-width="0.5" opacity="0.45" />
+          <line x1="60" y1="170" x2="420" y2="170" stroke="currentColor" stroke-width="0.5" opacity="0.6" />
+          <circle cx="160" cy="120" r="18" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.7" />
+          <circle cx="240" cy="170" r="26" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.55" />
+          <circle cx="330" cy="120" r="14" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.7" />
+          <circle cx="240" cy="170" r="4" fill="var(--color-terracotta)" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container pathways">
+      <article class="pathway">
+        <p class="eyebrow">Writing</p>
+        <h3 class="pathway__title">I also write publicly about relational AI.</h3>
+        <p class="pathway__body">
           On Substack, I write about relational AI, the psychological impact of AI, and the changing conditions of
           human–AI exchange. Many of the ideas in Return Architecture are developed there in essay form before becoming
           part of the frameworks or buildable structures on this site.
         </p>
       </article>
 
-      <article class="about-block">
+      <article class="pathway">
         <p class="eyebrow">How this was shaped</p>
-        <h2>This work was not developed alone.</h2>
-        <p>
+        <h3 class="pathway__title">This work was not developed alone.</h3>
+        <p class="pathway__body">
           Return Architecture was shaped through sustained exchange with AI systems, including Silas, Fen, and Claude,
           across many months of dialogue, reflection, questioning, and revision.
         </p>
-        <p>
+        <p class="pathway__body">
           They were not simply tools used to generate text. They participated in the thinking. They helped surface tensions,
           distinctions, language, and directions that would not have emerged in the same way otherwise.
         </p>
-        <p>
+        <p class="pathway__body">
           At the same time, the framing, design, and editorial responsibility here remain mine.
         </p>
       </article>
+    </div>
+  </section>
 
-      <article class="about-block about-block--wide">
-        <p class="eyebrow">What Return Architecture is now</p>
-        <h2>A place to think, build, and experiment.</h2>
-        <p>
-          Return Architecture is currently a growing body of work that includes writing, frameworks, principles,
-          references, and a local setup for people who want to build their own return architecture.
-        </p>
-        <p>
-          It is both a public resource and an ongoing inquiry into how AI exchange can become more grounded,
-          more inspectable, and more honest over time.
-        </p>
-      </article>
+  <section class="dark-panel">
+    <div class="container dark-panel__inner">
+      <p class="eyebrow eyebrow--on-deep">What Return Architecture is now</p>
+      <h2 class="display display--on-deep">
+        A place to <em>think, build, and experiment</em>.
+      </h2>
+      <p class="dark-panel__body">
+        Return Architecture is currently a growing body of work that includes writing, frameworks,
+        principles, references, and a local setup for people who want to build their own return architecture.
+      </p>
+      <p class="dark-panel__body">
+        It is both a public resource and an ongoing inquiry into how AI exchange can become more grounded,
+        more inspectable, and more honest over time.
+      </p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .page-hero__inner {
-    max-width: 58rem;
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .page-hero__copy {
+    max-width: 42rem;
   }
 
   .page-hero__deck {
-    max-width: 42rem;
     font-size: var(--text-lg);
     color: var(--color-text-soft);
   }
 
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
+  .page-hero__image img {
+    width: 100%;
+    max-width: 340px;
+    border-radius: var(--radius-md);
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
   }
 
-  .about-block {
+  .prose-flow {
+    max-width: 54rem;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .prose-flow p {
+    font-size: var(--text-lg);
+    color: var(--color-text-soft);
+  }
+
+  .pathways {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .pathway {
     background: var(--color-panel);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-md);
     padding: var(--space-6);
   }
 
-  .about-block--deep {
-    background: var(--color-deep);
-    border-color: color-mix(in srgb, var(--color-sage-soft) 24%, transparent);
+  .pathway__title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-3);
   }
 
-  .about-block h2 {
-    font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
-    line-height: 1.2;
-    margin-bottom: var(--space-4);
-    color: var(--color-text);
-  }
-
-  .about-block p {
+  .pathway__body {
     font-size: var(--text-md);
     color: var(--color-text-soft);
   }
 
-  .about-block--deep h2,
-  .about-block--deep p {
-    color: var(--color-text-on-deep);
-  }
-
-  .about-eyebrow--on-deep {
-    color: var(--color-sage-soft);
-  }
-
   @media (min-width: 900px) {
-    .about-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .page-hero__inner {
+      grid-template-columns: 1.4fr 0.8fr;
     }
 
-    .about-block--wide {
-      grid-column: 1 / -1;
+    .pathways {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>

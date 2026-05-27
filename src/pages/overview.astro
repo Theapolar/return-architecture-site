@@ -38,8 +38,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </p>
       </article>
 
-      <article class="overview-block">
-        <p class="eyebrow">Why return matters</p>
+      <article class="overview-block overview-block--deep">
+        <p class="eyebrow overview-eyebrow--on-deep">Why return matters</p>
         <h2>Continuity needs structure.</h2>
         <p>
           Most AI systems are designed for seamless continuation: keep the exchange going,
@@ -87,8 +87,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </p>
       </article>
 
-      <article class="overview-block overview-block--wide">
-        <p class="eyebrow">A note on care and limits</p>
+      <article class="overview-block overview-block--wide overview-block--deep">
+        <p class="eyebrow overview-eyebrow--on-deep">A note on care and limits</p>
         <h2>More continuity is not automatically safer.</h2>
         <p>
           Memory, scheduled return, persistent context, and relational framing can make AI exchange
@@ -127,6 +127,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     padding: var(--space-6);
   }
 
+  .overview-block--deep {
+    background: var(--color-deep);
+    border-color: color-mix(in srgb, var(--color-sage-soft) 24%, transparent);
+  }
+
   .overview-block h2 {
     font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
     line-height: 1.2;
@@ -137,6 +142,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .overview-block li {
     font-size: var(--text-md);
     color: var(--color-text-soft);
+  }
+
+  .overview-block--deep h2,
+  .overview-block--deep p,
+  .overview-block--deep li {
+    color: var(--color-text-on-deep);
+  }
+
+  .overview-eyebrow--on-deep {
+    color: var(--color-sage-soft);
   }
 
   .overview-block ul {

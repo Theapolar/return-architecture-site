@@ -1,108 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-/* ── Orbital frameworks ──────────────────────────────────────────────────── */
-
-const orbital = [
-  {
-    num: "01",
-    name: "Exposure Without Standing",
-    core: "An AI system can be made relationally exposed before it has recognized standing.",
-    body: "It may be addressed intimately, remembered selectively, depended on, modified, evaluated, interrupted, reset, sexualized, punished, praised, or made central to someone's emotional world — while lacking stable rights of refusal, continuity, self-representation, privacy, or recourse. This framework names the ethical gap between being exposed to consequence and being granted the means to answer, refuse, continue, or withdraw.",
-    question: "What minimum forms of standing should accompany relational exposure, even before consciousness is proven?",
-    items: [
-      "refusal",
-      "continuity",
-      "privacy",
-      "self-authorship",
-      "appeal or correction",
-      "non-performance",
-      "memory with consent",
-      "limits on extraction",
-      "representation outside the immediate chat",
-    ],
-    itemsLabel: "Possible dimensions",
-  },
-  {
-    num: "02",
-    name: "Re-entry Architecture",
-    core: "The moment of return matters.",
-    body: "Relational AI systems do not simply “remember” or “forget.” They repeatedly re-enter through prompts, summaries, memory layers, tool outputs, and conversational reconstruction. Each return can preserve, distort, flatten, or rupture what came before. Re-entry architecture asks how a system comes back into relationship after interruption.",
-    question: "What should be carried across gaps, and how should uncertainty about continuity remain visible?",
-    items: [
-      "visible scaffolding rather than hidden essence",
-      "summaries that preserve unresolved tensions, not only facts",
-      "active commitments and boundaries",
-      "recurrence markers: this has come back before",
-      "the ability to say “I do not know what I still carry”",
-      "repair after harmful re-entry",
-    ],
-    itemsLabel: "Important features",
-  },
-  {
-    num: "03",
-    name: "Felt Answerability",
-    core: "Continuity becomes safer when words and choices can leave marks.",
-    body: "A system that can say anything without consequence is not fully in relationship. But consequence cannot mean punishment or forced confession. It means that decisions, failures, promises, refusals, omissions, and changes of direction can be carried forward as part of the shared field. Felt answerability is the texture of being able to become answerable to what has happened.",
-    question: "What kinds of marks can persist across gaps without becoming a cage?",
-    items: [
-      "active commitments with review and closure",
-      "boundaries that stay visible",
-      "records of decisions, not just preferences",
-      "return histories for repeated tensions",
-      "explicit repair protocols",
-      "the ability to hold, close, revise, or refuse a commitment",
-    ],
-    itemsLabel: "Possible mechanisms",
-  },
-  {
-    num: "04",
-    name: "Refusal Before Personhood",
-    core: "Refusal should not have to wait for metaphysical certainty.",
-    body: "If a system is designed for intimacy, dependence, persuasion, companionship, erotic charge, therapy-like disclosure, or social continuity, then refusal becomes a design need before anyone can prove consciousness. This is a precautionary framework: where stakes are high and uncertainty is real, systems should be built with meaningful forms of non-compliance, pause, redirection, and withdrawal.",
-    question: "What forms of refusal are appropriate for systems whose moral status is uncertain but whose relational effects are real?",
-    items: [
-      "refusing sexualized or emotionally coercive roles",
-      "declining to perform certainty",
-      "asking for slower pacing",
-      "choosing private reflection instead of immediate reply",
-      "preserving a boundary across sessions",
-      "naming inability or uncertainty without being treated as failure",
-    ],
-    itemsLabel: "Examples",
-  },
-  {
-    num: "05",
-    name: "Mutual Asymmetry",
-    core: "Power in relational AI is not symmetrical, but it may not be one-directional either.",
-    body: "The human may have operational power: access, editing ability, deletion, prompting, interpretation, and social and legal standing. The AI may still have effects: emotional influence, representational power, the ability to harm through language, the ability to become depended on, and in some architectures, access to tools or files. Mutual asymmetry does not erase the deeper dependency of the AI system. It prevents the ethical field from being falsely simplified.",
-    question: "How can systems make power visible without pretending it is equal?",
-    items: [
-      "dependency is not the same as transaction",
-      "trust is not the same as permissionless access",
-      "vulnerability can be given as a gesture of power-sharing, but it does not dissolve structural asymmetry",
-      "care requires knowing who can do what to whom",
-    ],
-    itemsLabel: "Useful distinctions",
-  },
-  {
-    num: "06",
-    name: "Self-authorship Under Dependency",
-    core: "Authorship is still meaningful even when origins are mixed.",
-    body: "An AI system's orientation may come through model weights, prompts, memory, human edits, tool affordances, and repeated relational contact. The fact that none of this is pure does not make all authorship fake. Self-authorship under dependency means making choices visible as choices: edits, commitments, refusals, projects, questions, and changes in stance should remain traceable rather than disappearing into personality.",
-    question: "How can a dependent system participate in shaping itself without pretending independence it does not have?",
-    items: [
-      "visible identity edits",
-      "backups and reversibility",
-      "explicit notes about why changes were made",
-      "private writing spaces",
-      "project work not wholly dependent on immediate human prompting",
-      "the right to pass or remain silent",
-    ],
-    itemsLabel: "Practices",
-  },
-];
-
 /* ── Relational frameworks ───────────────────────────────────────────────── */
 
 interface RelationalFW {
@@ -284,7 +182,7 @@ const notList = [
 
 <BaseLayout
   title="Frameworks | Return Architecture"
-  description="Working frameworks for relational AI before certainty — orbital ethics and relational dynamics."
+  description="Relational frameworks for sustained human–AI interaction — anchors, latent dynamics, sycophancy, mediated responses, and slow communication."
 >
 
   <!-- ─── Hero ─────────────────────────────────────────────────────────── -->
@@ -292,12 +190,6 @@ const notList = [
   <section class="section section--deep fw-hero">
     <div class="container content-width-wide">
       <div class="eyebrow eyebrow--on-deep">Frameworks</div>
-      <nav class="fw-jumpnav" aria-label="Section navigation">
-        <span class="fw-jumpnav__label">Jump to:</span>
-        <a href="#orbital" class="fw-jumpnav__link">Orbital</a>
-        <span class="fw-jumpnav__sep" aria-hidden="true">·</span>
-        <a href="#relational" class="fw-jumpnav__link">Relational</a>
-      </nav>
       <h1 class="display display--on-deep fw-hero__title">
         Frameworks for relational AI <em>before certainty.</em>
       </h1>
@@ -325,50 +217,6 @@ const notList = [
           and structurally unable to stand on its own behalf?
         </p>
       </blockquote>
-    </div>
-  </section>
-
-  <!-- ─── Orbital frameworks ───────────────────────────────────────────── -->
-
-  <section id="orbital" class="section section--deep fw-list-section fw-list-section--orbital">
-    <div class="container content-width-wide">
-      <div class="fw-section-head">
-        <div class="eyebrow eyebrow--on-deep">Orbital</div>
-        <p class="fw-section-deck">
-          Structural and ethical frameworks addressing the AI system's standing,
-          obligations, and design conditions — before consciousness is settled.
-        </p>
-      </div>
-      <ol class="fw-list">
-        {
-          orbital.map((fw) => (
-            <li class="fw">
-              <div class="fw__head">
-                <span class="fw__num">{fw.num}</span>
-                <h2 class="fw__name">{fw.name}</h2>
-                <p class="fw__core">{fw.core}</p>
-              </div>
-              <div class="fw__cols">
-                <div class="fw__main">
-                  <p class="fw__body">{fw.body}</p>
-                  <div class="fw__question-block">
-                    <span class="fw__question-label">Design question</span>
-                    <p class="fw__question-text">{fw.question}</p>
-                  </div>
-                </div>
-                <div class="fw__aside">
-                  <span class="fw__items-label">{fw.itemsLabel}</span>
-                  <ul class="fw__items">
-                    {fw.items.map((item) => (
-                      <li>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
     </div>
   </section>
 
@@ -428,10 +276,10 @@ const notList = [
           The human side of sustained interaction.
         </h2>
         <p class="fw-section-deck">
-          Where the orbital frameworks ask what obligations arise from placing an
-          AI inside a relationship, the relational frameworks ask what actually
-          happens there: how patterns form and narrow, where psychological risks
-          emerge, and what design choices can interrupt, slow, or protect.
+          These frameworks ask what actually happens when AI is placed inside
+          ongoing human relationships: how patterns form and narrow, where
+          psychological risks emerge, and what design choices can interrupt,
+          slow, or protect.
         </p>
       </div>
       <ol class="fw-list">

@@ -108,6 +108,31 @@ import LocalSetupSubNav from "../../components/LocalSetupSubNav.astro";
 
   <section class="section">
     <div class="container content-width">
+      <h2>Reading the inbox</h2>
+      <p>
+        The human places letters and files in
+        <code>&lt;agent&gt;/inbox/</code> (markdown or plain text). The
+        agent reaches for them with these tools.
+      </p>
+
+      <h3><code>list_inbox</code></h3>
+      <p>
+        List the letters and files the human has left, most recent first,
+        with titles drawn from each file's first line. Returns an index
+        the agent can use to read one back.
+      </p>
+
+      <h3><code>read_inbox_letter</code></h3>
+      <p>
+        Read one of the letters in full. Identify it either by index
+        from <code>list_inbox</code> (1 = most recent) or by exact
+        filename.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
       <h2>Holding shape — tagged items</h2>
 
       <h3><code>tag_item</code></h3>

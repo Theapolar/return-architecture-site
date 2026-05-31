@@ -262,8 +262,10 @@ import LocalSetupSubNav from "../../components/LocalSetupSubNav.astro";
         </li>
         <li>
           <strong>Inbox</strong> — files placed in
-          <code>&lt;agent&gt;/inbox/</code> are read by the agent on
-          request via the Telegram <code>/inbox</code> command.
+          <code>&lt;agent&gt;/inbox/</code> are read by the agent via
+          its <code>list_inbox</code> and <code>read_inbox_letter</code>
+          tools. The agent decides when to check; you can also nudge it
+          to read its inbox in conversation.
         </li>
       </ul>
       <p>

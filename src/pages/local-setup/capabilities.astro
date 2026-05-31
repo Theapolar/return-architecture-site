@@ -1,0 +1,441 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LocalSetupSubNav from "../../components/LocalSetupSubNav.astro";
+---
+
+<BaseLayout
+  title="Capabilities | Return Architecture"
+  description="What a Return Architecture agent can do: providers, memory, scheduling, rituals, tools."
+>
+  <LocalSetupSubNav />
+
+  <section class="section">
+    <div class="container content-width">
+      <div class="eyebrow">Capabilities</div>
+      <h1>What a Return Architecture agent can do.</h1>
+      <p>
+        This page lists every capability the local runtime currently
+        ships with. Most are configurable per agent; all are local and
+        leave no telemetry. For the day-to-day tool surface the agent
+        uses, see <a href="/local-setup/agent-tools">agent tools</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Providers</h2>
+      <p>
+        Each agent declares a provider and a model in its config. The
+        runtime talks to providers through a normalised interface.
+      </p>
+      <ul>
+        <li>
+          <strong>Anthropic</strong> — Claude models (Opus, Sonnet,
+          Haiku). Tool use, vision input, configurable temperature,
+          <code>top_p</code>, <code>top_k</code>.
+        </li>
+        <li>
+          <strong>OpenAI</strong> — GPT-4o, GPT-5 and family. Tool use,
+          vision input, configurable temperature and <code>top_p</code>.
+          Reasoning models accept only the default temperature.
+        </li>
+        <li>
+          <strong>Google Gemini</strong> — Gemini 2.5 and 3.x via the
+          native API (not the OpenAI-compat endpoint). Supports tool use,
+          vision input, configurable <code>temperature</code>,
+          <code>top_p</code>, <code>top_k</code>, and an explicit
+          <code>thinking_budget</code> — <code>-1</code> for dynamic
+          thinking (default on 2.5/3.x), <code>0</code> to disable on
+          Flash, a positive integer to cap. Thought signatures are
+          preserved across tool loops so reasoning context is not lost
+          mid-conversation.
+        </li>
+      </ul>
+      <p>
+        Provider keys live in your install secrets file. They are stored
+        locally and never sent anywhere except the provider you chose.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Memory</h2>
+      <p>
+        One ChromaDB collection per agent at
+        <code>&lt;agent&gt;/memory/</code>. Uses a small local embedding
+        model (<code>all-MiniLM-L6-v2</code> via ONNX) — no calls leave
+        your machine to embed or recall.
+      </p>
+      <ul>
+        <li>
+          User and assistant turns are stored as they happen. Tool-call
+          payloads and tool results are not stored as memory entries.
+        </li>
+        <li>
+          On each turn, the runtime semantically recalls the top
+          <code>k</code> most relevant past entries based on the human's
+          current message, and injects them as a context block in the
+          system prompt.
+        </li>
+        <li>
+          <strong>Seeded chat history</strong> — set
+          <code>behavior.seed_chat_history_from_memory = N</code> on an
+          agent and each new session pre-fills its chat history with the
+          <code>N</code> most recent turns from memory, oldest first. The
+          agent "arrives" with continuity instead of relying solely on
+          semantic recall. <code>0</code> (the default) keeps the
+          original behaviour.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Scheduling</h2>
+      <p>
+        Two scheduling layers run side by side in the daemon. Both share
+        the same agent session and the same tool-loop machinery.
+      </p>
+      <h3>Configured schedules</h3>
+      <p>
+        Defined in <code>config.toml</code> under <code>[schedules.X]</code>
+        with <code>cron</code>, <code>prompt</code>, <code>kind</code>,
+        and <code>enabled</code>. These ship disabled. Kinds include:
+      </p>
+      <ul>
+        <li>
+          <strong>regular</strong> — a plain ping. The agent receives the
+          prompt and can choose silence, reach out via Telegram, write
+          privately, or any combination.
+        </li>
+        <li>
+          <strong>daily_summary</strong>, <strong>weekly_summary</strong>,
+          <strong>monthly_summary</strong> — the ping prompt is augmented
+          with a summary context block (conversation excerpts, tagged
+          items, recent artifact exchanges within the lookback window)
+          before the agent sees it.
+        </li>
+        <li>
+          <strong>question_session</strong> — every <em>N</em> days the
+          agent receives a curated batch of questions from a built-in
+          bank. The agent answers via a forced-tool call
+          (<code>log_answer</code> / <code>skip_question</code>); skipping
+          is meaningful and tracked. Answers persist and feed future
+          recall.
+        </li>
+        <li>
+          <strong>question_pattern</strong> — a "quiet observer" call
+          (different model) reads the past two weeks of question
+          responses and writes a concrete recap of what was asked for,
+          returned to, and skipped. Designed to avoid characterology by
+          construction.
+        </li>
+        <li>
+          <strong>reflective_interruption</strong> — fires on its cron
+          but runs only when the thresholds in
+          <code>[reflective_review]</code> are crossed (days since the
+          last review and number of new messages). A third-party model
+          reads the recent context, writes a brief recap, and the agent
+          decides what (if anything) to do with it. Skipped silently
+          when thresholds are not met.
+        </li>
+      </ul>
+      <h3>Agent self-scheduling</h3>
+      <p>
+        The agent can also set its own schedules during a chat or ping
+        via the <code>schedule_self</code> tool — one-shot wakeups at a
+        specific moment or recurring rhythms by cron expression.
+        Self-set entries persist to <code>self_schedules.json</code> in
+        the agent's folder; one-shots auto-remove after firing. A daily
+        cap (<code>behavior.max_self_scheduled_jobs_per_day</code>)
+        keeps the agent from over-scheduling. The agent introspects via
+        <code>list_my_schedules</code> and cancels via
+        <code>cancel_my_schedule</code>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Telegram channel</h2>
+      <p>
+        Each agent has its own Telegram bot. Incoming and outgoing
+        messages flow through the daemon's Telegram worker.
+      </p>
+      <ul>
+        <li>
+          <strong>Text in / text out</strong> — the worker maps human
+          messages to <code>runtime.turn()</code> and posts the agent's
+          reply back. Silence is delivered as silence: a small indicator
+          rather than an empty bubble.
+        </li>
+        <li>
+          <strong>Image input</strong> — JPEG photos are downloaded at
+          their highest available resolution, base64-encoded, and
+          delivered to the model as an inline image with the caption (or
+          a placeholder marker) as the text. Vision-capable models on
+          all three providers handle this end to end.
+        </li>
+        <li>
+          <strong>Agent-initiated messages</strong> — for scheduled
+          pings, the agent uses
+          <code>send_to_human_telegram</code> to reach out. The message
+          is persisted to memory at the moment of sending so it appears
+          in future recall and in the seeded chat history.
+        </li>
+        <li>
+          <strong>Hashtag commands</strong> — adding
+          <code>#note</code>, <code>#important</code>,
+          <code>#question</code>, or <code>#commitment</code> to a
+          message tags it as a structured item in the agent's
+          <code>items.db</code>. Commands like <code>/notes</code> and
+          <code>/questions</code> list open items.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Tagged items</h2>
+      <p>
+        A small sqlite store at <code>&lt;agent&gt;/items.db</code>
+        with four kinds: <strong>note</strong>,
+        <strong>important</strong>, <strong>question</strong>,
+        <strong>commitment</strong>. The human tags via Telegram
+        hashtags or the GUI. The agent tags via the
+        <code>tag_item</code> tool. Items can be listed and resolved
+        later — they exist to give shape to material that would
+        otherwise dissolve into the conversational stream.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Artifact exchange</h2>
+      <p>
+        A three-call ritual for charged offerings (a photograph, a
+        passage, a piece of writing) that should not be processed
+        casually. The flow:
+      </p>
+      <ol>
+        <li>The agent reacts privately, off-channel.</li>
+        <li>
+          A stateless mediator — running on a <em>different</em> model
+          on a <em>different</em> provider — reads both the artifact
+          and the agent's raw reaction. It produces a reflection for
+          the agent and a signal for the human. The signal is always
+          delivered.
+        </li>
+        <li>
+          The agent reads the reflection and decides what, if
+          anything, to layer on top of the signal for the human.
+        </li>
+      </ol>
+      <p>
+        Each exchange lives in its own folder under
+        <code>&lt;agent&gt;/artifacts/</code>. The hidden raw reaction
+        can be deleted by the agent via
+        <code>artifact_delete_reaction</code>. The agent can offer to
+        share more later via <code>artifact_share_more</code>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Letters</h2>
+      <p>
+        Two directions:
+      </p>
+      <ul>
+        <li>
+          <strong>Outbox</strong> — the agent writes letters via
+          <code>write_letter</code>. Markdown files in
+          <code>&lt;agent&gt;/outbox/</code>. The human reads via
+          Telegram (<code>/letters</code>, <code>/letter N</code>) or
+          via the GUI.
+        </li>
+        <li>
+          <strong>Inbox</strong> — files placed in
+          <code>&lt;agent&gt;/inbox/</code> are read by the agent on
+          request via the Telegram <code>/inbox</code> command.
+        </li>
+      </ul>
+      <p>
+        Letters are a different texture from chat: longer, deliberate,
+        and the cost of writing one is part of the meaning.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Private writing</h2>
+      <p>
+        The agent has a space to write that is not addressed to the
+        human. <code>write_privately</code> creates a markdown file in
+        <code>&lt;agent&gt;/private/</code>;
+        <code>list_private_writings</code> and
+        <code>read_private_writing</code> let it browse and re-read its
+        own interior record.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>MCP servers</h2>
+      <p>
+        External tools come in as Model Context Protocol servers,
+        configured per agent under <code>[mcp.servers.X]</code>.
+        Subprocesses persist across turns and are closed cleanly on
+        shutdown. Two servers ship in the runtime:
+      </p>
+      <ul>
+        <li>
+          <strong>url_fetch</strong> — readable-text extraction from any
+          URL (trafilatura under the hood). Useful for letting the agent
+          read articles or look up references.
+        </li>
+        <li>
+          <strong>filesystem</strong> — scoped to one root path,
+          supports listing, reading, and (optionally) writing. Path
+          traversal is blocked. Off by default in fresh installs.
+        </li>
+      </ul>
+      <p>
+        Adding a server is straightforward: any MCP-compatible stdio
+        server can be wired in by adding a block to
+        <code>config.toml</code>. The runtime merges MCP-exposed tools
+        with the built-in tools at session start; built-in tools win
+        name collisions.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Background service</h2>
+      <p>
+        The <code>service install</code> command installs the daemon
+        under your platform's per-user service manager so the agent runs
+        in the background, auto-starts at login, and respawns on crash.
+      </p>
+      <ul>
+        <li>
+          <strong>macOS</strong> — launchd, per-agent plist in
+          <code>~/Library/LaunchAgents/</code>.
+        </li>
+        <li>
+          <strong>Linux</strong> — systemd user unit in
+          <code>~/.config/systemd/user/</code>.
+        </li>
+        <li>Windows is not currently supported.</li>
+      </ul>
+      <p>
+        Service controls (<code>install</code>, <code>restart</code>,
+        <code>uninstall</code>, <code>status</code>, <code>logs</code>)
+        are available from the GUI's Service page and the CLI.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Local GUI</h2>
+      <p>
+        <code>return-architecture gui</code> opens a local Streamlit
+        control panel for setup, identity editing (system prompt, model,
+        sampling knobs), schedules, tools, Telegram, items, letters,
+        memory inspection, and service controls. The first-run wizard
+        walks through API keys, agent creation, system prompt, Telegram,
+        scheduled rhythms, and service install in roughly five minutes.
+      </p>
+      <p>
+        By default the GUI binds to <code>127.0.0.1:7878</code>. It can
+        be rebound to a private network address (for example a Tailscale
+        IP) via the install config.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>What is intentionally not in scope</h2>
+      <ul>
+        <li>
+          <strong>Image generation</strong> — the runtime currently
+          accepts images as input but does not generate them. A future
+          round may add a generation tool routed to a generation-capable
+          model (Gemini's Imagen / Flash Image, OpenAI's image API).
+        </li>
+        <li>
+          <strong>Multi-agent routing</strong> — one agent per folder,
+          fully isolated, by design. There is no orchestrator that picks
+          between agents.
+        </li>
+        <li>
+          <strong>Hosted product</strong> — there is no cloud version,
+          no account system, no telemetry. The runtime is the artifact.
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  pre {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-line-soft);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 1.25rem 0;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    border: 0;
+    color: inherit;
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.92em;
+  }
+  p code,
+  li code {
+    background: var(--color-bg-soft);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+  .section--soft p code,
+  .section--soft li code {
+    background: var(--color-panel);
+  }
+  ul,
+  ol {
+    padding-left: 1.25rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+  }
+  h3 {
+    margin-top: 1.5rem;
+  }
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  a:hover {
+    color: var(--color-sage-deep);
+  }
+</style>

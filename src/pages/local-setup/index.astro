@@ -1,11 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import LocalSetupSubNav from "../../components/LocalSetupSubNav.astro";
 ---
 
 <BaseLayout
   title="Local Setup | Return Architecture"
-  description="Install the Return Architecture local agent runtime on macOS."
+  description="Install the Return Architecture local agent runtime on macOS or Linux."
 >
+  <LocalSetupSubNav />
+
   <section class="section">
     <div class="container content-width">
       <div class="eyebrow">Local Setup</div>
@@ -26,8 +29,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <div class="container content-width">
       <h2>Before you begin</h2>
       <ul>
-        <li>A macOS machine. Linux works for the agent itself; the background service (auto-start on login) is macOS-only for now. Windows is not supported.</li>
-        <li>An API key from Anthropic or OpenAI (or both). Your keys stay on your machine — nothing is sent anywhere else.</li>
+        <li>A macOS or Linux machine. Both have a per-user background service so the agent auto-starts on login: launchd on macOS, systemd user units on Linux. Windows is not supported.</li>
+        <li>An API key from Anthropic, OpenAI, or Google (Gemini) — any one is enough; you can add the others later. Your keys stay on your machine and only go to the provider you chose.</li>
         <li>About five minutes for setup.</li>
       </ul>
       <p>
@@ -98,6 +101,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <a href="/local-setup/operational-notes">operational notes</a>.
         For the shape of the local environment more generally, see
         <a href="/local-setup/reference-setup">reference setup</a>.
+      </p>
+      <p>
+        For a complete map of what the runtime can do, see
+        <a href="/local-setup/capabilities">capabilities</a>. For the
+        full list of tools the agent has available, see
+        <a href="/local-setup/agent-tools">agent tools</a>.
       </p>
     </div>
   </section>

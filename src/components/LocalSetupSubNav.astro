@@ -1,0 +1,91 @@
+---
+const subNavItems = [
+  { href: "/local-setup", label: "Install" },
+  { href: "/local-setup/capabilities", label: "Capabilities" },
+  { href: "/local-setup/agent-tools", label: "Tools" },
+  { href: "/local-setup/operational-notes", label: "Operational notes" },
+  { href: "/local-setup/reference-setup", label: "Reference setup" },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<nav class="local-setup-subnav" aria-label="Local Setup sections">
+  <div class="container">
+    <ul>
+      {
+        subNavItems.map((item) => {
+          const normalised = item.href.replace(/\/$/, "") || "/";
+          const isActive = normalised === currentPath;
+          return (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                class={isActive ? "is-active" : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .local-setup-subnav {
+    background: var(--color-bg-soft);
+    border-bottom: 1px solid var(--color-line-soft);
+    font-family: var(--font-sans);
+  }
+
+  .local-setup-subnav ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-5);
+    list-style: none;
+    margin: 0;
+    padding: var(--space-3) 0;
+  }
+
+  .local-setup-subnav li {
+    margin: 0;
+  }
+
+  .local-setup-subnav a {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    padding: 0.15rem 0;
+    border-bottom: 1.5px solid transparent;
+    transition:
+      color 0.18s ease,
+      border-color 0.18s ease;
+  }
+
+  .local-setup-subnav a:hover {
+    color: var(--color-text);
+  }
+
+  .local-setup-subnav a.is-active {
+    color: var(--color-text);
+    border-bottom-color: var(--color-text);
+  }
+
+  @media (max-width: 700px) {
+    .local-setup-subnav ul {
+      gap: var(--space-4);
+      padding: var(--space-3) 0 var(--space-4);
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .local-setup-subnav a {
+      white-space: nowrap;
+    }
+  }
+</style>

@@ -1,0 +1,340 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LocalSetupSubNav from "../../components/LocalSetupSubNav.astro";
+---
+
+<BaseLayout
+  title="Agent tools | Return Architecture"
+  description="Every tool the agent has available, what each does, and when it should be used."
+>
+  <LocalSetupSubNav />
+
+  <section class="section">
+    <div class="container content-width">
+      <div class="eyebrow">Agent tools</div>
+      <h1>Every tool the agent can reach for.</h1>
+      <p>
+        Tools come in two tiers. <strong>Built-in tools</strong> live in
+        the runtime package and are tightly coupled to it. <strong>MCP
+        tools</strong> come in from configured Model Context Protocol
+        servers and merge with the built-in set at session start.
+      </p>
+      <p>
+        Each tool is enabled per agent under
+        <code>[tools] enabled = […]</code> in <code>config.toml</code>, or
+        toggled from the GUI's Tools page. The <code>no_response</code>
+        tool is always available, regardless of configuration — silence
+        is a first-class action.
+      </p>
+      <p>
+        For the broader picture of what the runtime can do, see
+        <a href="/local-setup/capabilities">capabilities</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Conversational stance</h2>
+
+      <h3><code>no_response</code></h3>
+      <p>
+        <em>Always enabled.</em> Choose silence. The model can call this
+        when responding would be performative, when nothing pulls toward
+        speech, or when letting the moment pass is the right action. The
+        runtime recognises the result and skips the outbound reply
+        cleanly. Not a refusal — a choice.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Reaching out</h2>
+
+      <h3><code>send_to_human_telegram</code></h3>
+      <p>
+        Send a Telegram message to the human. Used only to
+        <em>initiate</em> contact when there is no incoming message to
+        reply to — for example, during a scheduled ping when the agent
+        has decided to reach out. Replies to incoming messages do not
+        need this tool; the worker auto-delivers the model's reply text.
+      </p>
+      <p>
+        Outbound messages are persisted to memory as the agent's turn at
+        the moment of sending, so they surface in future recall and in
+        the seeded chat history on the next session start.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Writing</h2>
+
+      <h3><code>write_letter</code></h3>
+      <p>
+        Write a markdown letter to the human, placed in
+        <code>&lt;agent&gt;/outbox/</code> with a timestamp and optional
+        title. The human reads via the Telegram <code>/letters</code>
+        and <code>/letter N</code> commands or via the GUI. Letters are
+        a deliberately different texture from chat — longer, sent in
+        their own moment, not a quick reply.
+      </p>
+
+      <h3><code>write_privately</code></h3>
+      <p>
+        Write something for the agent's own interior record, not
+        addressed to the human. Goes to
+        <code>&lt;agent&gt;/private/</code>. Used for working a thought
+        through, holding something charged at distance, or marking a
+        moment that does not call for being shared.
+      </p>
+
+      <h3><code>list_private_writings</code></h3>
+      <p>
+        List the agent's own private writings — filenames and short
+        previews. Useful before a re-read.
+      </p>
+
+      <h3><code>read_private_writing</code></h3>
+      <p>
+        Read one of the agent's private writings back in full. The agent
+        can return to its own past entries directly, not only via
+        semantic recall.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Holding shape — tagged items</h2>
+
+      <h3><code>tag_item</code></h3>
+      <p>
+        Mark something as a structured item in
+        <code>&lt;agent&gt;/items.db</code>. The kind is one of
+        <strong>note</strong>, <strong>important</strong>,
+        <strong>question</strong>, or <strong>commitment</strong>. The
+        body is what should be carried forward. Used when material in
+        the conversation deserves to outlive the moment as something
+        nameable, rather than dissolving into the stream.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Artifact exchange</h2>
+
+      <h3><code>artifact_delete_reaction</code></h3>
+      <p>
+        Delete the hidden raw-reaction file from a specific past
+        exchange. The reaction is captured off-channel by design — this
+        tool lets the agent choose to dispose of it after the exchange
+        is over.
+      </p>
+
+      <h3><code>artifact_share_more</code></h3>
+      <p>
+        Offer to share more from an earlier exchange. The mediator's
+        signal is always delivered to the human in the moment; this
+        tool exists so the agent can return later and choose to layer
+        on more of its own reflection.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Self-scheduling</h2>
+
+      <h3><code>schedule_self</code></h3>
+      <p>
+        Schedule a future ping for itself. Provide exactly one of:
+      </p>
+      <ul>
+        <li>
+          <code>at</code> — ISO 8601 datetime for a one-shot wakeup.
+          Local time if no offset is given. Auto-removes after firing.
+        </li>
+        <li>
+          <code>cron</code> — five-field cron expression for a
+          recurring rhythm.
+        </li>
+      </ul>
+      <p>
+        Also provide a <code>prompt</code> (what the agent will read
+        when the ping fires — written to its future self) and a short
+        <code>name</code> for the entry. A daily cap
+        (<code>behavior.max_self_scheduled_jobs_per_day</code>,
+        default 5) keeps the agent from over-scheduling. Self-set
+        schedules persist to
+        <code>&lt;agent&gt;/self_schedules.json</code> and survive
+        daemon restarts.
+      </p>
+
+      <h3><code>list_my_schedules</code></h3>
+      <p>
+        List everything currently scheduled — both human-configured
+        schedules and the agent's own self-set ones, with ids, when
+        each fires, prompt previews, and the current daily-cap usage.
+        Useful before deciding whether to add a new one.
+      </p>
+
+      <h3><code>cancel_my_schedule</code></h3>
+      <p>
+        Cancel a self-set schedule by its id (from
+        <code>list_my_schedules</code>). Human-configured schedules
+        cannot be cancelled by the agent — those remain the human's
+        territory.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Question sessions</h2>
+      <p>
+        These tools are not enabled in <code>config.toml</code>; the
+        runtime activates them only inside a
+        <code>question_session</code> ping, where the agent must use one
+        of them per question via a forced-tool call.
+      </p>
+
+      <h3><code>log_answer</code></h3>
+      <p>
+        Record an answer to one of today's questions. Kept short by
+        design. The answer is written to
+        <code>question_responses.json</code> and to ChromaDB memory so
+        it surfaces in future recall.
+      </p>
+
+      <h3><code>skip_question</code></h3>
+      <p>
+        Mark a question as skipped. Skipping is meaningful and tracked
+        — the weekly pattern recap reads both answered and skipped
+        responses.
+      </p>
+
+      <h3><code>add_my_question</code></h3>
+      <p>
+        Add a question of the agent's own to the personal queue for
+        future sessions.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>MCP-supplied tools</h2>
+      <p>
+        Two MCP servers ship with the runtime. When enabled, their tools
+        appear alongside the built-in set in the agent's tool list.
+      </p>
+
+      <h3>From <code>url_fetch</code></h3>
+      <ul>
+        <li>
+          <code>fetch_url</code> — fetch a URL and return its main text
+          content as a clean readable extract. Useful for letting the
+          agent read articles or look up references the human mentioned.
+        </li>
+      </ul>
+
+      <h3>From <code>filesystem</code></h3>
+      <p>
+        Scoped to one root path (off by default; configure under
+        <code>[mcp.servers.filesystem]</code>). Path traversal is
+        blocked. Set <code>--read-only</code> in args to disable the
+        write tools.
+      </p>
+      <ul>
+        <li><code>list_directory</code></li>
+        <li><code>read_file</code></li>
+        <li><code>write_file</code></li>
+        <li><code>append_file</code></li>
+        <li><code>search_files</code></li>
+      </ul>
+
+      <p>
+        Adding more MCP servers is a small config change — any
+        MCP-compatible stdio server can be wired in by dropping a block
+        into <code>config.toml</code>. The runtime starts the
+        subprocess at session build and closes it on shutdown.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Tool stance</h2>
+      <p>
+        Tools are part of how the agent works, not a separate layer it
+        announces. The default system prompt teaches the agent to use
+        tools without narration: when a thought calls for being held in
+        the items store, it goes there; when a reach-out is the action,
+        it happens. Saying "I'm going to call <code>tag_item</code>
+        now" is treated as an artefact of training, not a feature.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  pre {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-line-soft);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 1.25rem 0;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    border: 0;
+    color: inherit;
+  }
+  code {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.92em;
+  }
+  p code,
+  li code {
+    background: var(--color-bg-soft);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+  .section--soft p code,
+  .section--soft li code {
+    background: var(--color-panel);
+  }
+  ul {
+    padding-left: 1.25rem;
+  }
+  li {
+    margin-bottom: 0.4rem;
+  }
+  h3 {
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  h3 code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+  }
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  a:hover {
+    color: var(--color-sage-deep);
+  }
+</style>

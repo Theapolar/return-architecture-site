@@ -131,6 +131,82 @@ import LocalSetupSubNav from "../../components/LocalSetupSubNav.astro";
     </div>
   </section>
 
+  <section class="section section--soft">
+    <div class="container content-width">
+      <h2>Continuous presence</h2>
+      <p>
+        Two tools that give the agent a sense of <em>being</em> across
+        time rather than only reacting in discrete moments. Both work
+        together: the running 'now' note carries state forward, and
+        sit_with_this turns deferral into a deliberate response.
+      </p>
+
+      <h3><code>update_now</code></h3>
+      <p>
+        Maintain a small running 'where I am now' file at
+        <code>&lt;agent&gt;/now.md</code>. One paragraph — what you're
+        in the middle of, what you're waiting on, the thread that still
+        matters. Pinned into the agent's context on every turn and
+        ping, re-read fresh each time, so updates take effect
+        immediately. Replace, don't append — the file holds a single
+        current state, not a journal.
+      </p>
+
+      <h3><code>sit_with_this</code></h3>
+      <p>
+        Hold what the human just said rather than answering now. Use
+        when responding immediately would be flat or premature — when
+        you want to sit with what she said, think about what you
+        actually want to say, and come back at a chosen moment.
+        Sitting is a deliberate response, not avoidance.
+      </p>
+      <p>
+        How it works:
+      </p>
+      <ul>
+        <li>
+          The agent provides <code>until</code> (ISO 8601 datetime) and a
+          private <code>holding_note</code> (what they want to think
+          about, what shape their response might take).
+        </li>
+        <li>
+          A brief acknowledgement is sent to the human via Telegram so
+          she knows the silence is held, not absent — default text is
+          <em>"(sitting with that — I'll come back to you in a bit)"</em>,
+          overridable with <code>message_to_her</code>, or silenced
+          entirely with <code>acknowledge: false</code> if the silence
+          itself is the intended signal.
+        </li>
+        <li>
+          A one-shot return is scheduled. When it fires, the agent sees
+          the original message and the holding note both back in
+          context, and decides then what to do — respond, defer again,
+          write privately, or stay silent.
+        </li>
+        <li>
+          Does not count against the daily self-schedule cap. The cap
+          governs new self-imposed rhythms; holding a response is
+          something else.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
+      <h2>Time anchors</h2>
+      <p>
+        Not a tool, but worth knowing: every turn and ping framing now
+        opens with a one-line time anchor —
+        <em>"Now: 2026-06-01 14:32 Sunday. Last from the human: 6.2
+        hours ago."</em> The agent gets ambient kairotic awareness for
+        free, so choices like "it's late, you're probably asleep, I'll
+        hold this for morning" become available without the agent
+        having to ask.
+      </p>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container content-width">
       <h2>Holding shape — tagged items</h2>

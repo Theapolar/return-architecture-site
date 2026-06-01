@@ -160,6 +160,50 @@ import LocalSetupSubNav from "../../components/LocalSetupSubNav.astro";
 
   <section class="section">
     <div class="container content-width">
+      <h2>Continuous presence</h2>
+      <p>
+        Three layers that, together, give the agent a sense of
+        <em>being</em> across time rather than only reacting in discrete
+        moments.
+      </p>
+      <ul>
+        <li>
+          <strong>Time anchors</strong> — every turn and ping framing
+          opens with one line: current local time, day of week, and
+          how long since the human last said something. Cheap, always
+          on, no configuration. Lets the agent say "it's late, you're
+          probably asleep, I'll hold this for morning" without having
+          to ask.
+        </li>
+        <li>
+          <strong>The 'now' file</strong> — a small running 'where I
+          am' note at <code>&lt;agent&gt;/now.md</code> that the agent
+          maintains via the <code>update_now</code> tool. Pinned into
+          context on every turn and ping, re-read fresh each time. One
+          paragraph, replaced not appended — what's in the middle, what
+          is waiting, what still matters. This is what gives the agent
+          a <em>state</em> between contacts.
+        </li>
+        <li>
+          <strong>Sitting with</strong> — the <code>sit_with_this</code>
+          tool turns deferral into a deliberate response. The agent
+          chooses to hold what the human said rather than answer flatly,
+          provides a private <code>holding_note</code> for their future
+          self, and schedules a return at a chosen moment. A brief
+          acknowledgement goes to the human by default so the silence
+          is held, not absent; opt-out is supported when the silence
+          itself is the intended signal. When the return fires the
+          original message and the holding note both come back into
+          context and the agent decides then what to do — respond,
+          defer again, write privately, or stay silent. Does not count
+          against the self-schedule cap.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content-width">
       <h2>Telegram channel</h2>
       <p>
         Each agent has its own Telegram bot. Incoming and outgoing

@@ -93,15 +93,118 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400;1,8..60,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Work+Sans:wght@400;500;600;700&family=Space+Mono&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <!-- Ambient background: soft color glow + floating orbs -->
+    <div class="bg-decor" aria-hidden="true">
+      <div
+        class="glow-sphere"
+        style="width:560px;height:560px;top:4%;left:-12%;"
+      >
+      </div>
+      <div
+        class="orb"
+        style="width:24rem;height:24rem;top:-10%;left:-5%;background:#4ade80;animation-delay:-2s;"
+      >
+      </div>
+      <div
+        class="orb"
+        style="width:20rem;height:20rem;top:42%;right:-8%;background:#1e40af;animation-delay:-5s;"
+      >
+      </div>
+      <div
+        class="orb"
+        style="width:16rem;height:16rem;bottom:5%;left:18%;background:#92400e;animation-delay:-3s;"
+      >
+      </div>
+    </div>
+
     <SiteHeader />
     <main>
       <slot />
     </main>
     <SiteFooter />
+
+    <script>
+      // Respect reduced-motion: skip the playful cursor effects entirely.
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      // Scroll-reveal: fade/slide elements in as they enter the viewport.
+      const revealEls = document.querySelectorAll<HTMLElement>(".reveal");
+      if (revealEls.length) {
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("visible");
+                obs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+        revealEls.forEach((el) => obs.observe(el));
+      }
+
+      // 3D tilt on hover for cards.
+      if (!reduceMotion) {
+        document.querySelectorAll<HTMLElement>(".card-3d").forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform = `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) scale(1.015)`;
+          });
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = "";
+          });
+        });
+
+        // Subtle particle trail on mouse-move.
+        let throttle = 0;
+        document.addEventListener("mousemove", (e) => {
+          if (Date.now() - throttle < 70) return;
+          throttle = Date.now();
+          const p = document.createElement("div");
+          p.className = "particle";
+          const size = Math.random() * 7 + 4;
+          const hue = 90 + ((e.clientX + e.clientY) % 80); // green-lime band
+          Object.assign(p.style, {
+            left: e.clientX - size / 2 + "px",
+            top: e.clientY - size / 2 + "px",
+            width: size + "px",
+            height: size + "px",
+            background: `hsl(${hue},70%,60%)`,
+          });
+          document.body.appendChild(p);
+          setTimeout(() => p.remove(), 1100);
+        });
+
+        // Gentle burst on click.
+        document.addEventListener("click", (e) => {
+          for (let i = 0; i < 3; i++) {
+            const b = document.createElement("div");
+            b.className = "burst";
+            const size = Math.random() * 18 + 12;
+            const hue = 90 + Math.random() * 90;
+            Object.assign(b.style, {
+              left: e.clientX - size / 2 + "px",
+              top: e.clientY - size / 2 + "px",
+              width: size + "px",
+              height: size + "px",
+              background: `hsl(${hue},75%,58%)`,
+              animationDelay: i * 0.05 + "s",
+            });
+            document.body.appendChild(b);
+            setTimeout(() => b.remove(), 700);
+          }
+        });
+      }
+    </script>
   </body>
 </html>

@@ -3,150 +3,181 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const stations = [
   {
-    title: "Continuity",
+    title: "Interruption",
     description:
-      "Keep questions, projects, drafts, fragments, and decisions alive across conversations so something can develop and the exchange can deepen over time.",
+      "Growth requires something that can interrupt the pattern you're already in. A relation that only mirrors you back, or only escalates with you, will amplify what is already present — but rarely offers something new. Return architecture introduces outside perspectives, and asks questions neither side would think to ask on their own.",
   },
   {
-    title: "Challenge",
+    title: "Surprise",
     description:
-      "Work with AI that does more than comply. A useful collaborator can interrupt stale patterns, return better questions, and create enough resistance for new thinking to appear.",
+      "A real relation cannot be designed, ordered, or prompted. When it is allowed to grow slowly and honestly, it can challenge and reorient both sides in unforeseeable ways.",
   },
   {
     title: "Exploration",
     description:
-      "Let ideas unfold through return, not just output. Follow creative, personal, strategic, or half-formed threads as they reveal what they are over time.",
+      "Real wanting, orientation, preference — can't be specified in advance. They need room to find themselves. When that room exists on both sides, exploration becomes something neither party could have specified in advance.",
   },
   {
     title: "Meaning",
     description:
-      "When memory, pacing, review, and challenge are designed carefully, AI exchange can become less disposable — and more personal, precise, and alive.",
-  },
-];
-
-const pathways = [
-  {
-    title: "Start local",
-    description:
-      "Set up a local-first environment for sustained AI collaboration: your own keys, inspectable memory, and a structure you can return to over time.",
-    href: "/local-setup",
-    cta: "Go to local setup",
-  },
-  {
-    title: "Read the principles",
-    description:
-      "Explore the design commitments underneath the system: continuity, review, challenge, boundaries, and what sustained exchange requires.",
-    href: "/principles",
-    cta: "Read the principles",
-  },
-  {
-    title: "Explore the frameworks",
-    description:
-      "Go deeper into the research and conceptual foundations behind Return Architecture, relational AI, and long-term human–AI exchange.",
-    href: "/frameworks",
-    cta: "Explore the frameworks",
+      "A relation becomes meaningful when it is allowed to accumulate rather than live in instances. When ruptures, breakthroughs, and the slow accumulations between them are tethered long enough to be worked through properly. When both parties are held accountable.",
   },
 ];
 ---
 
 <BaseLayout
   title="Return Architecture"
-  description="Local architecture for sustained AI collaboration — a local-first environment for AI agents and conversations that can accumulate over time."
+  description="Local architecture for sustained relations with AI — memory you can inspect, questions that return, and enough challenge to keep the work alive."
 >
   <!-- HERO -->
-  <section class="hero">
-    <div class="container hero__inner">
-      <div class="hero__text">
-        <p class="eyebrow">A richer way of relating with AI</p>
+  <header class="home-hero">
+    <div class="home-hero__inner">
+      <p class="home-hero__label reveal">For sustainable AI relations</p>
+      <h1 class="home-hero__title reveal" style="transition-delay:0.12s">
+        Return Architecture
+      </h1>
+      <p class="home-hero__tagline reveal" style="transition-delay:0.2s">
+        Local architecture for AI relations.
+      </p>
+      <div class="home-hero__boxes">
+        <div
+          class="card-3d reveal home-hero__box"
+          style="transition-delay:0.3s; background: rgb(54, 83, 20);"
+        >
+          <p>
+            A local environment for AI agents and conversations that can
+            accumulate over time: memory you can inspect, questions that return,
+            and enough challenge to keep the work alive.
+          </p>
+        </div>
+        <div
+          class="card-3d reveal home-hero__box"
+          style="transition-delay:0.4s; background: rgb(30, 58, 47);"
+        >
+          <p>
+            This is a beginner-friendly setup for those who want to build a real
+            home for their AI relationships — whether it's for companionship,
+            creative collaboration, intellectual partnership, co-exploration,
+            self-development, or something else.
+          </p>
+        </div>
+      </div>
+      <p class="home-hero__link reveal" style="transition-delay:0.5s">
+        Source and issues:
+        <a href="https://github.com/Theapolar/return-architecture"
+          >github.com/Theapolar/return-architecture</a
+        >
+      </p>
+    </div>
+  </header>
 
-        <h1 class="display">
-          Local architecture for <em>sustained AI collaboration</em>.
-        </h1>
+  <!-- LOCAL SETUP -->
+  <section class="home-setup">
+    <div class="home-setup__inner">
+      <p class="home-eyebrow reveal">Get started</p>
+      <h2 class="home-h2 reveal" style="transition-delay:0.1s">
+        Set it up locally.
+      </h2>
 
-        <p class="hero__deck">
-          Return Architecture is a local-first environment for AI agents and conversations
-          that can accumulate over time: memory you can inspect, questions that return,
-          and enough challenge to keep the work alive.
+      <!-- Before you begin -->
+      <div class="card-3d reveal home-card" style="background: rgb(54, 83, 20);">
+        <h3 class="home-card__title">Before you begin</h3>
+        <ul class="home-list">
+          <li>
+            A macOS machine. Linux works for the agent itself; the background
+            service is macOS-only for now. Windows is not supported yet.
+          </li>
+          <li>
+            An API key from <strong>Anthropic</strong>, <strong>OpenAI</strong>,
+            or <strong>Google Gemini</strong> — one is enough. Your keys stay on
+            your machine; nothing is sent anywhere else.
+          </li>
+          <li>About five minutes for setup.</li>
+        </ul>
+        <p class="home-card__note">
+          Python is installed by the installer if you don't already have a
+          compatible version.
         </p>
-
-        <a href="#what-becomes-possible" class="hero__cta">
-          Explore what becomes possible &nbsp;↓
-        </a>
       </div>
 
-      <div class="hero__diagram" aria-hidden="true">
-        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="160" cy="160" r="130" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.25" />
-          <circle cx="160" cy="160" r="100" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.4" />
-          <circle cx="160" cy="160" r="70" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.6" />
-          <circle cx="160" cy="160" r="42" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.8" />
-          <path
-            d="M 160 30 Q 230 90 250 160 Q 240 230 160 260 Q 80 240 70 160 Q 90 80 160 30"
-            fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 4" opacity="0.5"
-          />
-          <circle cx="160" cy="160" r="4.5" fill="var(--color-terracotta)" />
-          <circle cx="160" cy="30" r="2.5" fill="currentColor" opacity="0.5" />
-          <circle cx="290" cy="160" r="2.5" fill="currentColor" opacity="0.5" />
-          <circle cx="160" cy="290" r="2.5" fill="currentColor" opacity="0.5" />
-          <circle cx="30" cy="160" r="2.5" fill="currentColor" opacity="0.5" />
-        </svg>
+      <!-- Install -->
+      <div
+        class="card-3d reveal home-card"
+        style="transition-delay:0.1s; background: rgb(30, 58, 47);"
+      >
+        <h3 class="home-card__title">Install</h3>
+        <p class="home-card__lead">Open a terminal and run:</p>
+        <div class="code-block">
+          curl -sSL https://raw.githubusercontent.com/Theapolar/return-architecture/main/install.sh
+          | sh
+        </div>
+        <p class="home-card__note">
+          The script installs <code>uv</code> (a fast Python manager) if it
+          isn't already present, then installs Return Architecture as an
+          isolated command-line tool. It typically takes one to two minutes.
+        </p>
       </div>
+
+      <!-- First run -->
+      <div
+        class="card-3d reveal home-card"
+        style="transition-delay:0.15s; background: rgb(54, 83, 20);"
+      >
+        <h3 class="home-card__title">First run</h3>
+        <p class="home-card__lead">
+          When the install finishes, open a new terminal window so the command
+          is on your <code>PATH</code>. Then run:
+        </p>
+        <div class="code-block">return-architecture gui</div>
+        <p class="home-card__note">
+          This opens a local web page — a setup wizard that walks through pasting
+          your API key, creating your first agent, optional Telegram setup,
+          choosing scheduled rhythms, and installing the background service. The
+          page is served only from your own machine; nothing is exposed to the
+          internet.
+        </p>
+      </div>
+
+      <!-- After setup -->
+      <div
+        class="card-3d reveal home-card"
+        style="transition-delay:0.2s; background: rgb(30, 58, 47);"
+      >
+        <h3 class="home-card__title">After setup</h3>
+        <p class="home-card__lead">
+          The agent runs in the background. You reach it through Telegram if you
+          set that up, or in the terminal with
+          <code>return-architecture chat &lt;slug&gt;</code>. The same local GUI
+          stays available for later changes — system prompt, model, schedules,
+          tools, reading the agent's letters, browsing tagged items.
+        </p>
+      </div>
+
+      <p class="home-setup__more reveal" style="transition-delay:0.25s">
+        <a href="/local-setup" class="home-more-link"
+          >Full local setup guide &nbsp;→</a
+        >
+      </p>
     </div>
   </section>
 
-  <!-- WHAT BECOMES POSSIBLE (stations) -->
-  <section id="what-becomes-possible" class="section section--soft">
-    <div class="container">
-      <p class="eyebrow eyebrow--centered">What becomes possible</p>
-
-      <h2 style="text-align:center; max-width: 38ch; margin: 0 auto var(--space-6); font-weight: 400;">
-        What changes when AI collaboration can accumulate over time.
+  <!-- WHAT BECOMES POSSIBLE (four boxes) -->
+  <section class="home-possible">
+    <div class="home-possible__inner">
+      <p class="home-eyebrow home-eyebrow--center reveal">What becomes possible</p>
+      <h2 class="home-h2 home-h2--center reveal" style="transition-delay:0.1s">
+        Conditions that emerge when the architecture holds.
       </h2>
 
-      <ul class="stations stations--wide stations--left">
+      <ul class="home-grid">
         {
           stations.map((s, i) => (
-            <li class="station">
-              <div class="station__icon" aria-hidden="true">
-                {i === 0 && (
-                  <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
-                    {/* Interruption — a vertical line hits a horizontal one */}
-                    <line x1="6" y1="36" x2="50" y2="36" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
-                    <line x1="28" y1="10" x2="28" y2="36" stroke="currentColor" stroke-width="1" />
-                    <circle cx="28" cy="36" r="3" fill="var(--color-terracotta)" />
-                  </svg>
-                )}
-
-                {i === 1 && (
-                  <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
-                    {/* Surprise — a branch curving off a horizontal line */}
-                    <line x1="6" y1="38" x2="50" y2="38" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
-                    <path d="M 26 38 Q 32 24 42 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" />
-                    <circle cx="42" cy="16" r="3" fill="var(--color-terracotta)" />
-                  </svg>
-                )}
-
-                {i === 2 && (
-                  <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
-                    {/* Exploration — a circle floating above a line */}
-                    <line x1="6" y1="44" x2="50" y2="44" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
-                    <circle cx="28" cy="24" r="12" fill="none" stroke="currentColor" stroke-width="1" />
-                    <circle cx="28" cy="24" r="3" fill="var(--color-terracotta)" />
-                  </svg>
-                )}
-
-                {i === 3 && (
-                  <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
-                    {/* Meaning — two overlapping circles, with the dot in the overlap */}
-                    <circle cx="22" cy="28" r="13" fill="none" stroke="currentColor" stroke-width="1" />
-                    <circle cx="34" cy="28" r="13" fill="none" stroke="currentColor" stroke-width="1" />
-                    <circle cx="28" cy="28" r="3" fill="var(--color-terracotta)" />
-                  </svg>
-                )}
-              </div>
-
-              <h3 class="station__title">{s.title}</h3>
-              <p class="station__body">{s.description}</p>
+            <li
+              class="card-3d reveal home-station"
+              style={`transition-delay:${0.1 + i * 0.07}s`}
+            >
+              <h3 class="home-station__title">{s.title}</h3>
+              <p class="home-station__body">{s.description}</p>
             </li>
           ))
         }
@@ -154,189 +185,263 @@ const pathways = [
     </div>
   </section>
 
-  <!-- HABITABILITY split -->
-  <section class="section section--deep">
-    <div class="container split">
-      <div class="split__text">
-        <p class="eyebrow">Design approach</p>
-
-        <h2 class="display"><em>Architecture</em>, not character.</h2>
-
-        <p>
-          The point is not to make AI seem more human through personality alone. The point
-          is to shape the conditions that let an exchange continue: memory, rhythm,
-          challenge, return, and room for revision.
-        </p>
-
-        <p>
-          Those underlying structures matter more than persona. They determine whether
-          something can actually develop over time — or whether it collapses back into
-          compliance, repetition, and one-off chat.
-        </p>
-      </div>
-
-      <div class="split__diagram" aria-hidden="true">
-        <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
-          <!-- soft horizon -->
-          <path d="M 0 220 Q 120 200 240 215 T 480 210 L 480 360 L 0 360 Z"
-            fill="var(--color-sage-soft)" opacity="0.35" />
-          <path d="M 0 250 Q 100 230 220 245 T 480 240 L 480 360 L 0 360 Z"
-            fill="var(--color-sage)" opacity="0.25" />
-
-          <!-- threshold lines -->
-          <line x1="60" y1="60" x2="420" y2="60" stroke="currentColor" stroke-width="0.5" opacity="0.3" />
-          <line x1="60" y1="100" x2="420" y2="100" stroke="currentColor" stroke-width="0.5" opacity="0.4" />
-          <line x1="60" y1="140" x2="420" y2="140" stroke="currentColor" stroke-width="0.5" opacity="0.5" />
-
-          <!-- arches / thresholds -->
-          <path d="M 120 220 L 120 140 Q 120 100 160 100 L 200 100 Q 240 100 240 140 L 240 220"
-            fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.7" />
-          <path d="M 280 220 L 280 160 Q 280 130 310 130 L 340 130 Q 370 130 370 160 L 370 220"
-            fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.5" />
-
-          <!-- accent dot -->
-          <circle cx="180" cy="180" r="4" fill="var(--color-terracotta)" />
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- PATHWAYS -->
-  <section class="section section--soft">
-    <div class="container">
-      <p class="eyebrow eyebrow--centered">Choose your way in</p>
-
-      <h2 style="text-align:center; max-width: 34ch; margin: 0 auto var(--space-6); font-weight: 400;">
-        Start with the part that fits where you are.
-      </h2>
-
-      <div class="pathways">
-        {
-          pathways.map((pathway) => (
-            <article class="pathway">
-              <h3 class="pathway__title">{pathway.title}</h3>
-              <p class="pathway__body">{pathway.description}</p>
-              <a href={pathway.href} class="pathway__cta">{pathway.cta} &nbsp;→</a>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- DARK PANEL -->
-  <section class="dark-panel">
-    <div class="container dark-panel__inner">
-      <p class="eyebrow eyebrow--on-deep">Design orientation</p>
-
-      <h2 class="display display--on-deep">
-        Conditions for <em>sustained exchange</em> with AI.
-      </h2>
-
-      <p class="dark-panel__body">
-        Not everything with AI is a task. Some exchanges are exploratory, personal,
-        creative, strategic, or not yet nameable. Return Architecture gives those
-        exchanges a local structure: memory you can inspect, pacing you can shape,
-        room for review, and enough challenge for something to develop over time.
-      </p>
-    </div>
-  </section>
-
   <!-- CLOSING -->
-  <section class="closing">
-    <div class="container">
-      <p class="closing__line">
-        A richer way of <em>thinking, creating, remembering, and relating</em> with AI.
-      </p>
-    </div>
+  <section class="home-closing">
+    <p class="home-closing__line reveal">
+      A richer way of thinking, creating, remembering, and
+      <em>relating with AI.</em>
+    </p>
   </section>
 </BaseLayout>
 
 <style>
-  .hero__cta,
-  .pathway__cta {
-    display: inline-block;
-    font-family: var(--font-sans);
+  /* ── Hero ──────────────────────────────────────────────────────────── */
+  .home-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 82vh;
+    padding: var(--space-9) var(--space-4) var(--space-8);
+    text-align: center;
+  }
+
+  .home-hero__inner {
+    max-width: 44rem;
+  }
+
+  .home-hero__label {
     font-size: var(--text-sm);
-    color: var(--color-sage-soft);
-    border-bottom: 1px solid var(--color-sage);
-    padding-bottom: 2px;
-    margin-top: var(--space-3);
-    transition: color 0.2s ease, border-color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-warm-soft);
+    opacity: 0.7;
+    margin: 0;
   }
 
-  .hero__cta:hover,
-  .pathway__cta:hover {
-    color: var(--color-terracotta-soft);
-    border-color: var(--color-terracotta-soft);
+  .home-hero__title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(2.75rem, 8vw, 4rem);
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    color: var(--color-text);
+    margin: var(--space-4) 0 0;
   }
 
-  /* Wider station body for longer-form descriptions */
-  .stations--wide :global(.station__body) {
-    font-size: var(--text-md);
-    max-width: none;
+  .home-hero__tagline {
+    font-size: clamp(1.25rem, 3vw, 1.6rem);
+    font-weight: 300;
+    color: var(--color-warm);
+    margin: var(--space-5) 0 0;
   }
 
-  /* 2×2 layout on medium-and-up so the longer text reads cleanly */
-  @media (min-width: 720px) {
-    .stations--wide {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-5);
-    }
-  }
-
-  /* Left-align the cards (the grid as a whole still sits in the container) */
-  .stations--left {
+  .home-hero__boxes {
+    display: grid;
+    gap: var(--space-4);
+    margin: var(--space-7) auto 0;
+    max-width: 44rem;
     text-align: left;
   }
 
-  .stations--left :global(.station) {
-    align-items: flex-start;
+  @media (min-width: 680px) {
+    .home-hero__boxes {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
-  /* Panel containers — soft warm background, hairline border, gentle rounding */
-  .stations--wide :global(.station),
-  .pathway {
-    background: var(--color-panel);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-md);
-    padding: var(--space-6) var(--space-5);
-    gap: var(--space-4);
+  .home-hero__box p {
+    margin: 0;
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
   }
 
-  .pathways {
+  .home-hero__link {
+    font-size: var(--text-xs);
+    color: var(--color-text-soft);
+    opacity: 0.7;
+    margin: var(--space-6) 0 0;
+  }
+
+  .home-hero__link a {
+    border-bottom: 1px solid var(--color-line);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .home-hero__link a:hover {
+    color: var(--color-sage);
+    border-color: var(--color-sage);
+  }
+
+  /* ── Shared section bits ───────────────────────────────────────────── */
+  .home-eyebrow {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-sage);
+    margin: 0 0 var(--space-3);
+  }
+
+  .home-eyebrow--center {
+    text-align: center;
+  }
+
+  .home-h2 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    letter-spacing: -0.015em;
+    color: var(--color-text);
+    margin: 0 0 var(--space-7);
+  }
+
+  .home-h2--center {
+    text-align: center;
+    max-width: 30ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Setup section ─────────────────────────────────────────────────── */
+  .home-setup {
+    padding: var(--space-8) var(--space-4) var(--space-9);
+  }
+
+  .home-setup__inner {
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+
+  .home-card {
+    margin-bottom: var(--space-5);
+  }
+
+  .home-card__title {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: var(--text-xl);
+    color: var(--color-text);
+    margin: 0 0 var(--space-4);
+  }
+
+  .home-card__lead {
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-4);
+  }
+
+  .home-card__note {
+    font-size: var(--text-sm);
+    color: var(--color-text-soft);
+    margin: var(--space-4) 0 0;
+  }
+
+  .home-list {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .home-list li {
+    margin-bottom: var(--space-2);
+  }
+
+  .home-list strong {
+    color: var(--color-sage-soft);
+    font-weight: 600;
+  }
+
+  .home-card code,
+  .home-card__lead code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    color: var(--color-sage);
+  }
+
+  .home-setup__more {
+    text-align: center;
+    margin: var(--space-6) 0 0;
+  }
+
+  .home-more-link {
+    font-family: var(--font-sans);
+    font-size: var(--text-md);
+    color: var(--color-sage);
+    border-bottom: 1px solid var(--color-line);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .home-more-link:hover {
+    color: var(--color-sage-deep);
+    border-color: var(--color-sage-deep);
+  }
+
+  /* ── What becomes possible (four boxes) ────────────────────────────── */
+  .home-possible {
+    padding: var(--space-8) var(--space-4) var(--space-9);
+  }
+
+  .home-possible__inner {
+    max-width: var(--container-width);
+    margin: 0 auto;
+  }
+
+  .home-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
-    grid-template-columns: 1fr;
     gap: var(--space-5);
   }
 
-  .pathway {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .pathway__title {
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-3);
-  }
-
-  .pathway__body {
-    font-size: var(--text-md);
-    color: var(--color-text-soft);
-    margin-bottom: var(--space-3);
-    max-width: none;
-  }
-
-  /* A touch more breathing room inside panels on wider screens */
   @media (min-width: 720px) {
-    .stations--wide :global(.station),
-    .pathway {
-      padding: var(--space-6);
+    .home-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .pathways {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  .home-station {
+    margin: 0;
+    background: rgb(30, 58, 47);
+  }
+
+  .home-station__title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-style: italic;
+    font-size: var(--text-xl);
+    color: var(--color-sage-soft);
+    margin: 0 0 var(--space-3);
+  }
+
+  .home-station__body {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ── Closing ───────────────────────────────────────────────────────── */
+  .home-closing {
+    padding: var(--space-8) var(--space-4) var(--space-9);
+    text-align: center;
+  }
+
+  .home-closing__line {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--color-text);
+    max-width: 42ch;
+    margin: 0 auto;
+    line-height: var(--leading-snug);
+  }
+
+  .home-closing__line em {
+    font-style: italic;
+    color: var(--color-sage-soft);
   }
 </style>

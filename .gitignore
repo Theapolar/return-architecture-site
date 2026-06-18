@@ -25,3 +25,7 @@ npm-debug.log*
 .env
 .env.local
 .env.*.local
+
+# Local tooling / unrelated sub-projects (not part of the site)
+.claude/
+RA-chat-app/

@@ -10,13 +10,95 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-bg);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, var(--grad-1), var(--grad-2), var(--grad-3));
+  background-attachment: fixed;
   color: var(--color-text);
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: var(--text-md);
   line-height: var(--leading-relaxed);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Floating background decor (orbs + soft glow), injected once per page in
+   BaseLayout. Sits behind all content. -------------------------------------- */
+
+.bg-decor {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.32;
+  animation: orbFloat 8s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+}
+
+.glow-sphere {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(48px);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  animation: glowPulse 3.5s ease-in-out infinite, colorShift 14s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes colorShift {
+  0% {
+    background: rgba(74, 222, 128, 0.55);
+  }
+  33% {
+    background: rgba(30, 144, 255, 0.5);
+  }
+  66% {
+    background: rgba(138, 43, 226, 0.5);
+  }
+  100% {
+    background: rgba(74, 222, 128, 0.55);
+  }
+}
+
+/* Keep page content above the decor layer. */
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb,
+  .glow-sphere {
+    animation: none;
+  }
 }
 
 img,
@@ -148,8 +230,8 @@ h2,
 h3,
 h4 {
   margin: 0 0 var(--space-4);
-  font-family: var(--font-sans);
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: var(--leading-snug);
   color: var(--color-text);
@@ -206,11 +288,11 @@ em {
 /* Display headlines (italic-emphasis) -------------------------------------- */
 
 .display {
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   line-height: var(--leading-tight);
   letter-spacing: -0.02em;
-  font-weight: 400;
+  font-weight: 700;
   margin: 0 0 var(--space-5);
   color: var(--color-text);
 }
@@ -233,10 +315,106 @@ em {
 /* Panel utility ------------------------------------------------------------ */
 
 .panel {
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--color-panel);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   padding: var(--space-5);
+}
+
+/* Cards — float over the gradient, with an optional 3D tilt on hover -------- */
+
+.card-3d {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-3d {
+    transition: none;
+  }
+}
+
+/* Code block — monospace command lines on a dark inset surface ------------- */
+
+.code-block {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(163, 230, 53, 0.22);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4) var(--space-5);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  color: var(--color-sage);
+}
+
+/* Scroll-reveal — opacity/translate, toggled by an IntersectionObserver ---- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Cursor effects — particle trail + click bursts (kept subtle) ------------- */
+
+.particle {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 9999;
+  animation: particleFade 1.1s ease-out forwards;
+}
+
+@keyframes particleFade {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.burst {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 9999;
+  animation: burstAnim 0.7s ease-out forwards;
+}
+
+@keyframes burstAnim {
+  0% {
+    transform: scale(0);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
 }
 
 /* Hero --------------------------------------------------------------------- */

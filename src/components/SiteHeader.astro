@@ -1,14 +1,14 @@
 ---
 const navItems = [
   { href: "/overview", label: "Overview" },
-  { href: "/principles", label: "Principles" },
-  { href: "/frameworks", label: "Frameworks" },
   { href: "/local-setup", label: "Local Setup" },
-  // Hidden from primary nav until the sections are ready — pages still exist
-  // and are reachable by direct URL. Restore by uncommenting:
+  { href: "/about", label: "About" },
+  // Hidden from primary nav for now — pages still exist and are reachable by
+  // direct URL. Restore by uncommenting:
+  // { href: "/principles", label: "Principles" },
+  // { href: "/frameworks", label: "Frameworks" },
   // { href: "/reference", label: "Reference" },
   // { href: "/essays", label: "Essays" },
-  { href: "/about", label: "About" },
 ];
 ---
 
@@ -57,8 +57,8 @@ const navItems = [
     z-index: 20;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    background: rgba(243, 239, 231, 0.82);
-    border-bottom: 1px solid rgba(31, 35, 38, 0.06);
+    background: rgba(13, 28, 20, 0.7);
+    border-bottom: 1px solid rgba(163, 230, 53, 0.12);
   }
 
   .site-header__inner {
@@ -71,10 +71,10 @@ const navItems = [
   }
 
   .site-header__brand {
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.005em;
     color: var(--color-text);
   }
 
@@ -155,7 +155,7 @@ const navItems = [
       top: 100%;
       left: 0;
       right: 0;
-      background: rgba(243, 239, 231, 0.98);
+      background: rgba(13, 28, 20, 0.97);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--color-line);
